@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+cd $(dirname $BASH_SOURCE);
 
 git pull origin main;
 
 function doIt() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
+	ln -s $PWD/.gitconfig ~/.gitconfig;
+	ln -s $PWD/.gitignore ~/.gitignore;
+	ln -s $PWD/.hushlogin ~/.hushlogin;
+	ln -s $PWD/.hyper.js ~/.hyper.js;
+	ln -s $PWD/.inputrc ~/.inputrc;
+	ln -s $PWD/.screenrc ~/.screenrc;
+	ln -s $PWD/.zprofile ~/.zprofile;
+	ln -s $PWD/.zshrc ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

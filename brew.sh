@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Install command-line tools using Homebrew.
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -22,21 +23,12 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
-# Install a modern version of Bash.
-brew install bash
-brew install bash-completion2
-
-# Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/bash";
-fi;
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+brew install wget
 
 # Install GnuPG to enable PGP-signing commits.
-brew install gnupg
+# brew install gnupg
 
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
@@ -96,6 +88,16 @@ brew install ssh-copy-id
 brew install tree
 brew install vbindiff
 brew install zopfli
+# Node.js version manager
+brew install nodebrew
+# UNIX shell (command interpreter)
+brew install zsh
+# Fish shell like syntax highlighting for zsh
+brew install zsh-syntax-highlighting
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+brew bundle --file ~/.dotfiles/Brewfile
 
 # Remove outdated versions from the cellar.
 brew cleanup

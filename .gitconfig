@@ -98,6 +98,7 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
+	editor = code --wait
 
 [color]
 
@@ -127,7 +128,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	gpgsign = false
 
 [diff]
 
@@ -181,3 +182,6 @@
 [init]
 
 	defaultBranch = main
+[user]
+	name = wadwax
+	email = 22623048+wadwax@users.noreply.github.com
