@@ -14,6 +14,9 @@ brew upgrade
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
+# Install GUI
+brew bundle --file $PWD/Brewfile
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
@@ -98,8 +101,6 @@ brew install zsh
 brew install zsh-syntax-highlighting
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-brew bundle --file $PWD/Brewfile
 
 # Remove outdated versions from the cellar.
 brew cleanup
