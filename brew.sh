@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd $(dirname $BASH_SOURCE);
+
 # Install command-line tools using Homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
@@ -97,7 +99,7 @@ brew install zsh-syntax-highlighting
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-brew bundle --file ~/.dotfiles/Brewfile
+brew bundle --file $PWD/Brewfile
 
 # Remove outdated versions from the cellar.
 brew cleanup
