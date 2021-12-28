@@ -33,3 +33,5 @@ cask "visual-studio-code"
 cask "wechat"
 # Video communication and virtual meeting platform
 cask "zoom"
+# Unpacks archive files
+cask "the-unarchiver"
