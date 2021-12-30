@@ -12,5 +12,8 @@
 !bootstrap.sh
 !brew.sh
 !Brewfile
+!.tmux.conf
+!.tmux.conf.osx
+!.config/
 !LICENSE-MIT.txt
 !README.md
