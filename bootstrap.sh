@@ -12,7 +12,10 @@ function doIt() {
 	ln -s $PWD/.inputrc ~/.inputrc;
 	ln -s $PWD/.screenrc ~/.screenrc;
 	ln -s $PWD/.zprofile ~/.zprofile;
-	ln -s $PWD/.zshrc ~/.zshrc;
+	ln -s $PWD/.zshrc ~/.zshrc;	
+	ln -s $PWD/.tmux.conf ~/.tmux.conf;
+	ln -s $PWD/.tmux.conf.osx ~/.tmux.conf.osx;
+	ln -s $PWD/.config/ ~/.config;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

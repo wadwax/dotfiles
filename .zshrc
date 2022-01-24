@@ -4,6 +4,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+export TERM="screen-256color"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -292,3 +294,17 @@ alias path='echo -e ${PATH//:/\\n}'
 alias vim="nvim"
 alias vi="nvim"
 alias oldvim="\vim"
+
+# tmux
+alias ide="tmux splitw -v -p 10 && tmux selectp -t 1 && vim ."
+alias tks="tmux kill-server"
+alias ta="tmux a"
+alias tls="tmux ls"
+alias texit="tmux kill-session"
+alias td="tmux detach-client"
+alias tw="tmux new-window"
+alias tnw="tmux next-window"
+alias tpw="tmux previous-window"
+alias tp="tmux splitw"
+alias tpv="tmux splitw -v"
+alias tph="tmux splitw -h"
