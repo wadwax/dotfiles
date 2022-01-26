@@ -25,8 +25,9 @@ Plug 'christoomey/vim-tmux-navigator'
 " Syntax highlighting
 Plug 'morhetz/gruvbox'
 Plug 'jparise/vim-graphql'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+"Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 
