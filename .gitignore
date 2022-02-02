@@ -3,7 +3,6 @@
 !.gitconfig
 !.gitignore
 !.hushlogin
-!.hyper.js
 !.macos
 !.inputrc
 !.screenrc
@@ -15,6 +14,8 @@
 !.tmux.conf
 !.tmux.conf.osx
 !.config/nvim
+!.config/nvim/vim-plug/**/*
+!.config/nvim/general/**/*
 !.config/iterm2
 !LICENSE-MIT.txt
 !README.md
