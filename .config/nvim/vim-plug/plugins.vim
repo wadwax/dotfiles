@@ -30,6 +30,7 @@ Plug 'mxw/vim-jsx'
 "Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+Plug 'ap/vim-css-color'
 
 " Git management
 Plug 'tpope/vim-fugitive'
