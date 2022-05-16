@@ -20,14 +20,17 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 
+" Vim Tmux
 Plug 'christoomey/vim-tmux-navigator'
+
+" Data Science
+" Ipython notebook, python LSP
 
 " Syntax highlighting
 Plug 'morhetz/gruvbox'
 Plug 'jparise/vim-graphql'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-"Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'ap/vim-css-color'
@@ -42,6 +45,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
+
+" Markdown
+"Plug 'godlygeek/tabular'
+"Plug 'plasticboy/vim-markdown'
 
 " Games
 Plug 'ThePrimeagen/vim-be-good'

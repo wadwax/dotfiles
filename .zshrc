@@ -308,3 +308,5 @@ alias tpw="tmux previous-window"
 alias tp="tmux splitw"
 alias tpv="tmux splitw -v"
 alias tph="tmux splitw -h"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
