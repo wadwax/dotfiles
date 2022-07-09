@@ -1,37 +1,57 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/core"
-# Voice and text chat software
-cask "discord"
-# App to build and share containerized applications and microservices
+
+brew "mas" # install mas for app store applications
+
+# Dev
+brew "wget"
+brew "curl"
+brew "git"
+brew "git-lfs"
+brew "ffmpeg"
+brew "nodebrew"
+brew "node"
+brew "python@3.9"
+brew "graphviz"
 cask "docker"
-# App for note taking, organizing, task lists, and archiving
-cask "evernote"
-# Web browser
-cask "firefox"
-# Web browser
-cask "google-chrome"
-# Terminal built on web technologies
-cask "hyper"
-# Provides updates to various Microsoft products
-cask "microsoft-auto-update"
-# Web browser
-cask "microsoft-edge"
-# Office suite
-cask "microsoft-office"
-# Meet, chat, call, and collaborate in just one place
-cask "microsoft-teams"
-# Web browser
-cask "opera"
-# Collaboration platform for API development
 cask "postman"
-# Move and resize windows using keyboard shortcuts or snap areas
-cask "rectangle"
-# Open-source code editor
+cask "flutter"
+cask "android-studio"
+cask "android-sdk"
 cask "visual-studio-code"
-# Free messaging and calling application
+mas "Xcode", id: 497799835
+
+# Terminal
+brew "neovim"
+cask "iterm2"
+cask "zsh-syntax-highlighting"
+cask "tmux"
+
+# Social Networks
+cask "discord"
 cask "wechat"
-# Video communication and virtual meeting platform
 cask "zoom"
-# Unpacks archive files
-cask "the-unarchiver"
+cask "slack"
+mas "LINE", id: 539883307
+
+# Web browsers
+cask "firefox"
+cask "google-chrome"
+cask "microsoft-edge"
+cask "opera"
+
+# Productivity
+cask "microsoft-auto-update"
+cask "microsoft-office"
+cask "microsoft-teams"
+cask "rectangle" # Move and resize windows using keyboard shortcuts or snap areas
+cask "the-unarchiver" # Unpacks archive files
+cask 'vlc'
+mas "Pixelmator Pro", id: 1289583905
+
+# Fonts
+cask "font-fira-code"
+cask "font-hack-nerd-font"
+
