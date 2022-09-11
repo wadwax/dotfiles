@@ -8,7 +8,6 @@ function doIt() {
 	ln -s $PWD/.gitconfig ~/.gitconfig;
 	ln -s $PWD/.gitignore ~/.gitignore;
 	ln -s $PWD/.hushlogin ~/.hushlogin;
-	ln -s $PWD/.hyper.js ~/.hyper.js;
 	ln -s $PWD/.inputrc ~/.inputrc;
 	ln -s $PWD/.screenrc ~/.screenrc;
 	ln -s $PWD/.zprofile ~/.zprofile;

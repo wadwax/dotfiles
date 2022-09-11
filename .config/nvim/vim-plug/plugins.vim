@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 " autocomplete, commenting, linting, prettify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
+Plug 'mattn/emmet-vim'
 
 " File management
 Plug 'scrooloose/nerdtree'

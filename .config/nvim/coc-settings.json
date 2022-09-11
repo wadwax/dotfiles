@@ -11,6 +11,8 @@
     "typescript.tsx",
     "graphql",
     "css",
-    "html"
-  ]
+    "html",
+    "svelte"
+  ],
+  "svelte.enable-ts-plugin": true
 }

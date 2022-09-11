@@ -95,12 +95,16 @@ brew install vbindiff
 brew install zopfli
 # Node.js version manager
 brew install nodebrew
+# Tmux
+brew install tmux
 # UNIX shell (command interpreter)
 brew install zsh
 # Fish shell like syntax highlighting for zsh
 brew install zsh-syntax-highlighting
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Download all brew casks
 
 # Remove outdated versions from the cellar.
 brew cleanup
