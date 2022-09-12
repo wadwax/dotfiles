@@ -3,7 +3,7 @@
 !.gitconfig
 !.gitignore
 !.hushlogin
-!.macos
+!macos.sh
 !.inputrc
 !.screenrc
 !.zprofile
@@ -15,5 +15,6 @@
 !.tmux.conf.osx
 !.config/nvim/*
 !.config/iterm2
+!iTermProfile.json
 !LICENSE-MIT.txt
 !README.md
