@@ -15,6 +15,6 @@
 !.tmux.conf.osx
 !.config/nvim/*
 !.config/iterm2
-!iTermProfile.json
+!iterm/
 !LICENSE-MIT.txt
 !README.md
