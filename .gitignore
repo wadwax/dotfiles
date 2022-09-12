@@ -13,8 +13,7 @@
 !Brewfile
 !.tmux.conf
 !.tmux.conf.osx
-!.config/nvim/*
-!.config/iterm2
+!.config/nvim/**/*.vim
 !iterm/
 !LICENSE-MIT.txt
 !README.md
