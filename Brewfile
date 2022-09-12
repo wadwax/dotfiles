@@ -21,13 +21,13 @@ cask "flutter"
 cask "android-studio"
 cask "android-sdk"
 cask "visual-studio-code"
-mas "Xcode", id: 497799835
+# mas "Xcode", id: 497799835
 
 # Terminal
 brew "neovim"
+brew "tmux"
+brew "zsh-syntax-highlighting"
 cask "iterm2"
-cask "zsh-syntax-highlighting"
-cask "tmux"
 
 # Social Networks
 cask "discord"

@@ -19,7 +19,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Set computer name (as done via System Preferences → Sharing)
 #sudo scutil --set ComputerName "0x6D746873"
 #sudo scutil --set HostName "0x6D746873"
-sudo scutil --set LocalHostName "0x6D746873"
+#sudo scutil --set LocalHostName "0x6D746873"
 #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
 
 # Disable the sound effects on boot
@@ -136,7 +136,11 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClic
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
 # Trackpad: three finger swipe to drag
+echo "Trackpad: three finger swipe to drag"
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
+defaults write com.apple.AppleMultitouchTrackpad DragLock -bool false
+defaults write com.apple.AppleMultitouchTrackpad Dragging -bool false
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
@@ -193,7 +197,7 @@ sudo pmset -a autorestart 1
 sudo systemsetup -setrestartfreeze on
 
 # Sleep the display after 15 minutes
-sudo pmset -a displaysleep 15
+sudo pmset -a displaysleep 5
 
 # Disable machine sleep while charging
 sudo pmset -c sleep 0
@@ -214,11 +218,11 @@ sudo systemsetup -setcomputersleep Off > /dev/null
 sudo pmset -a hibernatemode 0
 
 # Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
+#sudo rm /private/var/vm/sleepimage
 # Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
+#sudo touch /private/var/vm/sleepimage
 # …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
+#sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
 # Screen                                                                      #
@@ -343,7 +347,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 # Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+#chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
@@ -586,7 +590,7 @@ defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnab
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 # Change indexing order and disable some search results
 # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
 # 	MENU_DEFINITION
@@ -655,25 +659,30 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 ###############################################################################
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
+echo "Prevent Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disablelocal
+#hash tmutil &> /dev/null && sudo tmutil disablelocal
 
 ###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
 
 # Show the main window when launching Activity Monitor
+echo "Show the main window when launching Activity Monitor"
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
 # Visualize CPU usage in the Activity Monitor Dock icon
+echo "Visualize CPU usage in the Activity Monitor Dock icon"
 defaults write com.apple.ActivityMonitor IconType -int 5
 
 # Show all processes in Activity Monitor
+echo "Show all processes in Activity Monitor"
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
 # Sort Activity Monitor results by CPU usage
+echo "Sort Activity Monitor results by CPU usage"
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
