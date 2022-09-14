@@ -34,6 +34,7 @@ cask "discord"
 cask "wechat"
 cask "zoom"
 cask "slack"
+cask "messenger"
 mas "LINE", id: 539883307
 
 # Web browsers
