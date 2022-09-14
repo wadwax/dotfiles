@@ -14,6 +14,7 @@
 !.tmux.conf
 !.tmux.conf.osx
 !.config/nvim/**/*.vim
+!.ssh/
 !iterm/
 !LICENSE-MIT.txt
 !README.md

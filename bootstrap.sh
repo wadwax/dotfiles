@@ -15,6 +15,7 @@ function doIt() {
 	ln -s $PWD/.tmux.conf ~/.tmux.conf;
 	ln -s $PWD/.tmux.conf.osx ~/.tmux.conf.osx;
 	ln -s $PWD/.config/ ~/.config;
+	ln -s $PWD/.ssh/config ~/.ssh/config;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
