@@ -6,7 +6,6 @@ git pull origin main;
 
 function doIt() {
 	ln -s $PWD/.gitconfig ~/.gitconfig;
-	ln -s $PWD/.gitignore ~/.gitignore;
 	ln -s $PWD/.hushlogin ~/.hushlogin;
 	ln -s $PWD/.inputrc ~/.inputrc;
 	ln -s $PWD/.screenrc ~/.screenrc;
