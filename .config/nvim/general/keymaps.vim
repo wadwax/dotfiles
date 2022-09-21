@@ -54,8 +54,8 @@ nmap <leader>gs :G<cr>
 nmap <leader>gc :Git commit<cr>
 nmap <leader>gp :Git push<cr>
 
-" CocFix
-nnoremap <C-f> <cmd>CocFix<cr>
+" Coc CodeAction
+nnoremap <C-f> <Plug>(coc-codeaction)
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
