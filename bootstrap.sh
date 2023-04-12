@@ -14,6 +14,7 @@ function doIt() {
 	ln -s $PWD/.tmux.conf ~/.tmux.conf;
 	ln -s $PWD/.tmux.conf.osx ~/.tmux.conf.osx;
 	ln -s $PWD/.config/ ~/.config;
+  mkdir -p ~/.ssh;
 	ln -s $PWD/.ssh/config ~/.ssh/config;
 }
 
