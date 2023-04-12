@@ -4,6 +4,6 @@ source $HOME/.config/nvim/vim-plug/coc.vim
 source $HOME/.config/nvim/vim-plug/emmet.vim
 source $HOME/.config/nvim/vim-plug/nerdtree.vim
 source $HOME/.config/nvim/vim-plug/git.vim
-source $HOME/.config/nvim/vim-plug/doge.vim
+"source $HOME/.config/nvim/vim-plug/doge.vim
 source $HOME/.config/nvim/general/settings.vim
 source $HOME/.config/nvim/general/keymaps.vim
