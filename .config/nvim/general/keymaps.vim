@@ -171,3 +171,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
+
+" copy to buffer
+vmap <leader>y :w! ~/.vimbuffer<CR>
+nmap <leader>y :.w! ~/.vimbuffer<CR>
+" paste from buffer
+map <leader>p :r ~/.vimbuffer<CR>

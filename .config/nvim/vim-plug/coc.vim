@@ -7,6 +7,7 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ 'coc-html', 
   \ 'coc-svelte',
+  \ 'coc-pyright',
   \ ]
 " from readme
 " if hidden is not set, TextEdit might fail.
@@ -49,4 +50,3 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-

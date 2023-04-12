@@ -47,6 +47,7 @@ cask "opera"
 cask "microsoft-auto-update"
 cask "microsoft-office"
 cask "microsoft-teams"
+cask "notion"
 cask "rectangle" # Move and resize windows using keyboard shortcuts or snap areas
 cask "the-unarchiver" # Unpacks archive files
 cask 'vlc'

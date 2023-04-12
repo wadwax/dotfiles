@@ -12,7 +12,8 @@
     "graphql",
     "css",
     "html",
-    "svelte"
+    "svelte",
+    "python"
   ],
   "svelte.enable-ts-plugin": true
 }

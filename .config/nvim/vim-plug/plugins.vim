@@ -52,6 +52,12 @@ Plug 'weirongxu/plantuml-previewer.vim'
 "Plug 'godlygeek/tabular'
 "Plug 'plasticboy/vim-markdown'
 
+" Copilot
+Plug 'github/copilot.vim'
+
+" Documentation
+Plug 'kkoomen/vim-doge', { 'do': 'npm i --no-save && npm run build:binary:unix' }
+
 " Games
 Plug 'ThePrimeagen/vim-be-good'
 
