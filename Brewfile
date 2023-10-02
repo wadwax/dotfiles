@@ -21,7 +21,12 @@ cask "flutter"
 cask "android-studio"
 cask "android-sdk"
 cask "visual-studio-code"
+cask pgadmin4
 # mas "Xcode", id: 497799835
+brew "gnupg"
+brew "dopplerhq/cli/doppler"
+brew "ripgrep"
+brew docker-compose
 
 # Terminal
 brew "neovim"
@@ -34,7 +39,6 @@ cask "discord"
 cask "wechat"
 cask "zoom"
 cask "slack"
-cask "messenger"
 mas "LINE", id: 539883307
 
 # Web browsers

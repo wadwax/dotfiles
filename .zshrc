@@ -310,4 +310,12 @@ alias tpv="tmux splitw -v"
 alias tph="tmux splitw -h"
 
 #export PATH=$HOME/.nodebrew/current/bin:$PATH
+# asdf
+. "$HOME/.asdf/asdf.sh"
 export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
