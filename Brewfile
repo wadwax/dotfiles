@@ -22,6 +22,7 @@ cask "android-studio"
 cask "android-sdk"
 cask "visual-studio-code"
 cask pgadmin4
+cask warp
 # mas "Xcode", id: 497799835
 brew "gnupg"
 brew "dopplerhq/cli/doppler"
