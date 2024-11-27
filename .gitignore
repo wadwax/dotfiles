@@ -14,6 +14,8 @@
 !.tmux.conf
 !.tmux.conf.osx
 !.config/nvim/**/*.vim
+!.config/aerospace
+!.config/mise/config.toml
 !.ssh/
 !iterm/
 !LICENSE-MIT.txt

@@ -296,7 +296,7 @@ alias vi="nvim"
 alias oldvim="\vim"
 
 # tmux
-alias ide="tmux splitw -v -p 10 && tmux selectp -t 1 && vim ."
+alias ide="tmux splitw -v -l 10 && tmux splitw -h && tmux selectp -t 1 && vim ."
 alias tks="tmux kill-server"
 alias ta="tmux a"
 alias tls="tmux ls"
@@ -310,12 +310,17 @@ alias tpv="tmux splitw -v"
 alias tph="tmux splitw -h"
 
 #export PATH=$HOME/.nodebrew/current/bin:$PATH
-# asdf
-. "$HOME/.asdf/asdf.sh"
-export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+# proto
+export PROTO_HOME="$HOME/.proto"
+export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
+
+# tidal
+source ${HOME}/.ghcup/env
+eval "$(~/.local/bin/mise activate bash)"
+eval "$(~/.local/bin/mise activate zsh)"

@@ -36,6 +36,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'ap/vim-css-color'
 Plug 'evanleck/vim-svelte'
+Plug 'jvirtanen/vim-hcl'
 
 " Git management
 Plug 'tpope/vim-fugitive'
@@ -60,5 +61,8 @@ Plug 'kkoomen/vim-doge', { 'do': 'npm i --no-save && npm run build:binary:unix' 
 
 " Games
 Plug 'ThePrimeagen/vim-be-good'
+
+" Tidal
+Plug 'tidalcycles/vim-tidal'
 
 call plug#end()
