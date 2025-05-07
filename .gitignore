@@ -14,9 +14,8 @@
 !Brewfile
 !.tmux.conf
 !.tmux.conf.osx
-!.config/nvim/**/*.lua
-!.config/aerospace
-!.config/mise/config.toml
+!.config/nvim/
+!.config/aerospace/
 !.ssh/
 !iterm/
 !LICENSE-MIT.txt
