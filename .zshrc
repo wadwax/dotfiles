@@ -316,22 +316,9 @@ fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-# proto
-export PROTO_HOME="$HOME/.proto"
-export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
-
-# tidal
-source ${HOME}/.ghcup/env
-eval "$(~/.local/bin/mise activate bash)"
-eval "$(~/.local/bin/mise activate zsh)"
-
 # pnpm
 export PNPM_HOME="/Users/koki.fujiwara/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-# pnpm end
-eval "$(mise activate zsh)"
-eval "$(mise activate zsh)"

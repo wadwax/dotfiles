@@ -1,8 +1,2 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# Added by OrbStack: command-line tools and integration
-# Comment this line if you don't want it to be added again.
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
-eval "$(mise activate zsh --shims)"
-eval "$(mise activate zsh --shims)"
