@@ -296,7 +296,7 @@ alias vi="nvim"
 alias oldvim="\vim"
 
 # tmux
-alias ide="tmux splitw -v -l 10 && tmux splitw -h && tmux selectp -t 1 && vim ."
+alias ide="tmux splitw -v -l 10 && tmux splitw -h && tmux selectp -t 1 && vim"
 alias tks="tmux kill-server"
 alias ta="tmux a"
 alias tls="tmux ls"
@@ -324,3 +324,14 @@ export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
 source ${HOME}/.ghcup/env
 eval "$(~/.local/bin/mise activate bash)"
 eval "$(~/.local/bin/mise activate zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/koki.fujiwara/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# pnpm end
+eval "$(mise activate zsh)"
+eval "$(mise activate zsh)"

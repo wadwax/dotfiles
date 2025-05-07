@@ -15,19 +15,19 @@ brew "nodebrew"
 brew "node"
 brew "python@3.9"
 brew "graphviz"
-cask "docker"
+cask "orbstack"
 cask "postman"
-cask "flutter"
 cask "android-studio"
 cask "android-sdk"
 cask "visual-studio-code"
-cask pgadmin4
-cask warp
-# mas "Xcode", id: 497799835
+cask "cursor"
+cask "tableplus"
+cask "cloudflare-warp"
 brew "gnupg"
 brew "dopplerhq/cli/doppler"
 brew "ripgrep"
 brew docker-compose
+# mas "Xcode", id: 497799835
 
 # Terminal
 brew "neovim"
@@ -47,18 +47,29 @@ cask "firefox"
 cask "google-chrome"
 cask "microsoft-edge"
 cask "opera"
+cask "arc"
 
 # Productivity
 cask "microsoft-auto-update"
 cask "microsoft-office"
 cask "microsoft-teams"
 cask "notion"
-cask "rectangle" # Move and resize windows using keyboard shortcuts or snap areas
+cask "linear"
+cask "raycast"
 cask "the-unarchiver" # Unpacks archive files
-cask 'vlc'
+cask "vlc"
+cask "1password"
+cask "nikitabobko/tap/aerospace"
 mas "Pixelmator Pro", id: 1289583905
+
+# LLM
+cask "chatgpt"
+cask "claude"
+cask "ollama"
 
 # Fonts
 cask "font-fira-code"
 cask "font-hack-nerd-font"
 
+# Hobbies
+cask "spotify"

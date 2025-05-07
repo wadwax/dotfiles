@@ -1,4 +1,5 @@
 /*
+.DS_Store
 
 !.gitconfig
 !.gitignore
@@ -13,7 +14,7 @@
 !Brewfile
 !.tmux.conf
 !.tmux.conf.osx
-!.config/nvim/**/*.vim
+!.config/nvim/**/*.lua
 !.config/aerospace
 !.config/mise/config.toml
 !.ssh/
