@@ -46,7 +46,6 @@ cask "cloudflare-warp"
 brew "gnupg"
 brew "dopplerhq/cli/doppler"
 brew "ripgrep"
-brew docker-compose
 # mas "Xcode", id: 497799835
 
 # Social Networks
