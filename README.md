@@ -17,7 +17,7 @@ Install developer tools
 
 Create ssh for git
 ```bash
-ssh-keygen -t rsa -b 4096 -C "hekohki@gmail.com"
+ssh-keygen -t rsa -b 4096 -C "<your email address>"
 ```
 
 Copy the ssha to your clipboard from `~/.ssh/id_rsa.pub`
