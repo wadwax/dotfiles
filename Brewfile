@@ -1,5 +1,3 @@
-tap "homebrew/core"
-
 brew "mas" # install mas for app store applications
 
 # Essentials
