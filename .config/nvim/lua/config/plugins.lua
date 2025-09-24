@@ -359,4 +359,15 @@ require("lazy").setup({
   }, -- Tmux integration
   { "christoomey/vim-tmux-navigator" },
 
+  -- Claude pane plugin
+  {
+    "wadwax/claude-pane.nvim",
+    config = function()
+      require("claude-pane").setup({
+        width = 60,
+        position = "right"
+      })
+    end,
+  },
+
 })

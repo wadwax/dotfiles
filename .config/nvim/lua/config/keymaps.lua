@@ -47,6 +47,11 @@ map("n", "<leader>p", ":r ~/.vimbuffer<CR>", { silent = true })
 -- Neotree
 map('n', "<C-n>", "<cmd>Neotree toggle<CR>", { silent = true })
 
+-- Claude pane
+map('n', "<C-t>", "<cmd>lua require('claude-pane').toggle()<CR>", { silent = true })
+map('v', "<C-t>", "<cmd>lua require('claude-pane').toggle()<CR>", { silent = true, noremap = true })
+map('n', "<leader>cc", "<cmd>lua require('claude-pane').focus()<CR>", { silent = true })
+
 
 -- Native LSP keybindings
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { silent = true })
