@@ -9,7 +9,7 @@ cask "raycast"
 cask "slack"
 cask "superhuman"
 cask "cursor"
-cask "linear"
+cask "linear-linear"
 
 # LLM
 cask "chatgpt"
@@ -44,6 +44,8 @@ cask "cloudflare-warp"
 brew "gnupg"
 brew "dopplerhq/cli/doppler"
 brew "ripgrep"
+brew "tailscale"
+cask "tailscale-app"
 # mas "Xcode", id: 497799835
 
 # Social Networks
