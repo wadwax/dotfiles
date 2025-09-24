@@ -75,7 +75,7 @@ set_random_color()
 
 -- Set menu
 dashboard.section.buttons.val = { dashboard.button("i", "  > Start IDE",
-  ":NvimTreeOpen <CR> | :!tmux splitw -v -l 10 && tmux splitw -h && tmux selectp -t 1 <CR>"),
+  ":!tmux splitw -v -l 8 && tmux splitw -h && tmux selectp -t 1<CR>:e .<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("s", "  > Settings",
     ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"), dashboard.button("q", "󰩈  > Quit NVIM", ":qa<CR>") }
