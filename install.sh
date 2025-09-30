@@ -74,6 +74,7 @@ safe_symlink "$COMMON_DIR/.inputrc" "$HOME/.inputrc"
 safe_symlink "$COMMON_DIR/.screenrc" "$HOME/.screenrc"
 safe_symlink "$COMMON_DIR/.tmux.conf" "$HOME/.tmux.conf"
 safe_symlink "$COMMON_DIR/.ssh/config" "$HOME/.ssh/config"
+safe_symlink "$COMMON_DIR/.config/nvim" "$HOME/.config/nvim"
 
 echo ""
 
