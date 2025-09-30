@@ -1,69 +1,292 @@
-# Wadwax's dotfiles
+# Wadwax's Dotfiles
+
+Cross-platform dotfiles for Linux and macOS with automatic OS detection.
 
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
 
+## Features
+
+- **OS Detection**: Automatically detects and configures for Linux or macOS
+- **Organized Structure**: Separate configurations for common, Linux-specific, and macOS-specific settings
+- **Safe Installation**: Backs up existing dotfiles before creating symlinks
+- **Minimal macOS Bloat**: Clean Linux configuration without unnecessary macOS-specific content
+
+## Directory Structure
+
+```
+dotfiles/
+├── common/           # Shared configurations across all OS
+│   ├── .gitconfig
+│   ├── .gitignore
+│   ├── .hushlogin
+│   ├── .inputrc
+│   ├── .screenrc
+│   ├── .tmux.conf
+│   ├── .zshrc       # Common zsh config (used by macOS)
+│   └── .ssh/
+│       └── config
+├── linux/            # Linux-specific configurations
+│   ├── .zshrc       # Linux-optimized zsh config
+│   └── install-packages.sh
+├── macos/            # macOS-specific configurations
+│   ├── .tmux.conf.osx
+│   ├── Brewfile
+│   ├── brew.sh
+│   ├── macos.sh
+│   └── iterm/
+├── install.sh        # Main installation script with OS detection
+└── README.md
+```
+
 ## Installation
 
-**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
+### Prerequisites
 
-### Init
+1. Git must be installed
+2. For macOS: Command Line Tools
+3. For Linux: Basic development tools
 
-Open Terminal
-```bash
-git --version
-```
-
-Install developer tools
-
-Create ssh for git
-```bash
-ssh-keygen -t rsa -b 4096 -C "<your email address>"
-```
-
-Copy the ssha to your clipboard from `~/.ssh/id_rsa.pub`
-
-Log in to GitHub and paste the public key in SSH keys setting page
-
-### Using Git and the bootstrap script
+### Quick Install
 
 ```bash
 cd ~
-git clone https://github.com/wadwax/dotfiles.git && cd dotfiles && ./bootstrap.sh
+git clone https://github.com/wadwax/dotfiles.git
+cd dotfiles
+./install.sh
 ```
 
-To update, `cd` into your local `dotfiles` repository and then:
+The installation script will:
+1. Detect your operating system (Linux or macOS)
+2. Create backups of existing dotfiles (with timestamp)
+3. Create symlinks to the appropriate configuration files
+4. Offer to install OS-specific packages (optional)
+
+### Manual Installation Steps
+
+If you prefer to set up manually:
+
+#### For Linux:
 
 ```bash
-./bootstrap.sh
+cd ~/dotfiles
+
+# Install common dotfiles
+ln -sf ~/dotfiles/common/.gitconfig ~/.gitconfig
+ln -sf ~/dotfiles/common/.gitignore ~/.gitignore
+ln -sf ~/dotfiles/common/.hushlogin ~/.hushlogin
+ln -sf ~/dotfiles/common/.inputrc ~/.inputrc
+ln -sf ~/dotfiles/common/.screenrc ~/.screenrc
+ln -sf ~/dotfiles/common/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/common/.ssh/config ~/.ssh/config
+
+# Install Linux-specific dotfiles
+ln -sf ~/dotfiles/linux/.zshrc ~/.zshrc
+
+# Optional: Install packages
+bash ~/dotfiles/linux/install-packages.sh
 ```
 
-Alternatively, to update while avoiding the confirmation prompt:
+#### For macOS:
 
 ```bash
-./bootstrap.sh -f
-```
-### Sensible macOS defaults
+cd ~/dotfiles
 
-When setting up a new Mac, you may want to set some sensible macOS defaults:
+# Install common dotfiles (same as Linux)
+ln -sf ~/dotfiles/common/.gitconfig ~/.gitconfig
+# ... (other common files)
+
+# Install macOS-specific dotfiles
+ln -sf ~/dotfiles/common/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/macos/.tmux.conf.osx ~/.tmux.conf.osx
+
+# Optional: Install Homebrew packages
+bash ~/dotfiles/macos/brew.sh
+
+# Optional: Set macOS defaults
+sudo bash ~/dotfiles/macos/macos.sh
+```
+
+## Package Installation
+
+### Linux
+
+The Linux package installer supports multiple package managers (apt, dnf, yum, pacman) and installs:
+
+- Core utilities: curl, wget, git, zsh, tmux, neovim
+- Development tools: ripgrep, tree, htop, build-essential
+- Shell enhancements: oh-my-zsh, powerlevel9k theme
+
+Run separately:
+```bash
+bash ~/dotfiles/linux/install-packages.sh
+```
+
+### macOS
+
+The macOS package installer uses Homebrew to install:
+
+- Development tools and CLI utilities
+- GUI applications (Arc, Cursor, iTerm2, etc.)
+- Fonts (Fira Code, Hack Nerd Font)
+- Terminal utilities (neovim, tmux, zsh enhancements)
+
+See `macos/Brewfile` for the complete list.
+
+Run separately:
+```bash
+bash ~/dotfiles/macos/brew.sh
+```
+
+## Configuration Details
+
+### Common Configurations
+
+These configurations are shared across all operating systems:
+
+- **Git**: Aliases, color schemes, and global settings
+- **Tmux**: Terminal multiplexer with custom keybindings (C-a prefix)
+- **SSH**: Basic SSH configuration with GitHub setup
+- **Input**: Readline configuration for better CLI input handling
+- **Screen**: Screen configuration for terminal management
+
+### Linux-Specific
+
+- **Zsh**: Cleaned up version without macOS-specific aliases (pbcopy, Finder, etc.)
+- Package manager support for apt, dnf, yum, and pacman
+
+### macOS-Specific
+
+- **Zsh**: Full-featured with macOS aliases and utilities
+- **Homebrew**: Comprehensive package list via Brewfile
+- **System defaults**: macOS system preferences automation
+- **iTerm2**: Terminal emulator profiles
+
+## Customization
+
+### SSH Keys
+
+After installation, set up your SSH keys:
 
 ```bash
-sudo ./macos.sh
+ssh-keygen -t rsa -b 4096 -C "your.email@example.com"
+cat ~/.ssh/id_rsa.pub
 ```
 
-### Install Homebrew formulae
+Copy the public key to GitHub/GitLab/etc.
 
-When setting up a new Mac, you may want to install some common [Homebrew](https://brew.sh/) formulae (after installing Homebrew, of course):
+### Git Configuration
+
+Update your Git user information:
 
 ```bash
-sudo ./brew.sh
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
 ```
 
-Some of the functionality of these dotfiles depends on formulae installed by `brew.sh`. If you don’t plan to run `brew.sh`, you should look carefully through the script and manually install any particularly important ones. A good example is Bash/Git completion: the dotfiles use a special version from Homebrew.
+### Zsh Theme
 
-### Change iTerm2 Profile
+The dotfiles use powerlevel9k theme by default. To customize:
+
+1. Edit `~/.zshrc` (or the source in `linux/.zshrc` / `common/.zshrc`)
+2. Modify the `POWERLEVEL9K_*` variables
+3. Reload: `source ~/.zshrc`
+
+### Adding Your Own Configurations
+
+1. Fork this repository
+2. Add your configurations to the appropriate directory (common/linux/macos)
+3. Update `install.sh` if you add new files to symlink
+4. Test the installation script
+5. Commit and push your changes
+
+## Updating
+
+To update your dotfiles to the latest version:
 
 ```bash
-open .
+cd ~/dotfiles
+git pull origin main
+./install.sh
 ```
 
-You will find wadwax iterm profile, open up iterm and click preference, and then replace the current profile
+The installation script will backup existing files before overwriting.
+
+## Uninstallation
+
+To remove symlinks and restore backups:
+
+```bash
+cd ~
+# Remove symlinks
+rm .gitconfig .gitignore .hushlogin .inputrc .screenrc .tmux.conf .zshrc
+rm .ssh/config  # or manually edit if you have other configs
+
+# Restore from backups (if desired)
+# Look for files with .backup.YYYYMMDD_HHMMSS extensions
+```
+
+## Shell Configuration
+
+### Zsh Plugins
+
+Currently using basic oh-my-zsh with:
+- Git plugin
+- Powerlevel9k theme
+
+To add more plugins, edit the `plugins=()` array in your `.zshrc`.
+
+### Aliases
+
+Common aliases included:
+
+- Navigation: `..`, `...`, `....`, `.....`
+- Git: `g` (git shorthand)
+- Tmux: `ta` (attach), `tks` (kill-server), `tls` (list sessions)
+- Neovim: `vim`, `vi` (both point to nvim)
+
+See the full list in `linux/.zshrc` or `common/.zshrc`.
+
+## Troubleshooting
+
+### Symlinks Not Working
+
+If symlinks aren't being created:
+1. Check file permissions: `ls -la ~/dotfiles`
+2. Ensure the install script is executable: `chmod +x install.sh`
+3. Run with bash explicitly: `bash install.sh`
+
+### Oh-My-Zsh Theme Not Loading
+
+If powerlevel9k isn't working:
+1. Check if oh-my-zsh is installed: `ls -la ~/.oh-my-zsh`
+2. Check if theme is installed: `ls -la ~/.oh-my-zsh/custom/themes/powerlevel9k`
+3. Install manually: `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k`
+
+### Package Installation Fails
+
+For Linux:
+- Ensure your package manager is up to date
+- You may need sudo privileges
+- Check internet connectivity
+
+For macOS:
+- Install Homebrew first: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+- Ensure Xcode Command Line Tools are installed
+
+## Warning
+
+**Important**: If you want to use these dotfiles, you should:
+1. Fork this repository
+2. Review the code and configurations
+3. Remove things you don't want or need
+4. Customize to your preferences
+
+Don't blindly use these settings unless you understand what they do!
+
+## Credits
+
+Originally forked and customized from various dotfiles repositories. Special thanks to the open-source community for inspiration and tools.
+
+## License
+
+MIT License - See LICENSE-MIT.txt for details.
