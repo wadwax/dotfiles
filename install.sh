@@ -104,6 +104,7 @@ elif [[ "$OS" == "macos" ]]; then
 
     safe_symlink "$COMMON_DIR/.zshrc" "$HOME/.zshrc"
     safe_symlink "$MACOS_DIR/.tmux.conf.osx" "$HOME/.tmux.conf.osx"
+    safe_symlink "$MACOS_DIR/.config/aerospace" "$HOME/.config/aerospace"
 
     echo ""
     echo "Would you like to install Homebrew packages? (y/n)"
