@@ -103,6 +103,7 @@ elif [[ "$OS" == "macos" ]]; then
     MACOS_DIR="$DOTFILES_DIR/macos"
 
     safe_symlink "$COMMON_DIR/.zshrc" "$HOME/.zshrc"
+    safe_symlink "$MACOS_DIR/.zprofile" "$HOME/.zprofile.local"
     safe_symlink "$MACOS_DIR/.tmux.conf.osx" "$HOME/.tmux.conf.osx"
     safe_symlink "$MACOS_DIR/.config/aerospace" "$HOME/.config/aerospace"
 
