@@ -234,3 +234,10 @@ alias tph="tmux splitw -h"
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 export PATH="$HOME/.local/bin:$PATH"
+
+# Activate mise
+eval "$(~/.local/bin/mise activate zsh)"
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+eval "$(starship init zsh)"
