@@ -648,10 +648,33 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
 
-# Install the Solarized Dark theme for iTerm
-# open "${HOME}/init/Solarized Dark.itermcolors"
+# Import iTerm2 settings if dotfiles iterm folder exists
+DOTFILES_ITERM_DIR="${HOME}/dotfiles/iterm"
+if [ -d "$DOTFILES_ITERM_DIR" ]; then
+	echo "Importing iTerm2 settings from dotfiles..."
 
-# Don’t display the annoying prompt when quitting iTerm
+	# Import the gruvbox color scheme
+	if [ -f "$DOTFILES_ITERM_DIR/gruvbox.itermcolors" ]; then
+		echo "Installing Gruvbox color scheme..."
+		open "$DOTFILES_ITERM_DIR/gruvbox.itermcolors"
+	fi
+
+	# Import iTerm2 profile
+	if [ -f "$DOTFILES_ITERM_DIR/profile.json" ]; then
+		echo "iTerm2 profile found at $DOTFILES_ITERM_DIR/profile.json"
+		echo "To import: iTerm2 > Preferences > Profiles > Other Actions > Import JSON Profiles"
+		echo "  File: $DOTFILES_ITERM_DIR/profile.json"
+	fi
+
+	# Import iTerm2 key mappings
+	if [ -f "$DOTFILES_ITERM_DIR/iterm.itermkeymap" ]; then
+		echo "iTerm2 key mappings found at $DOTFILES_ITERM_DIR/iterm.itermkeymap"
+		echo "To import: iTerm2 > Preferences > Keys > Key Mappings > Presets > Import"
+		echo "  File: $DOTFILES_ITERM_DIR/iterm.itermkeymap"
+	fi
+fi
+
+# Don't display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
