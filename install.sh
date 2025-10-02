@@ -67,6 +67,15 @@ echo "Installing common dotfiles..."
 DOTFILES_DIR="$(pwd)"
 COMMON_DIR="$DOTFILES_DIR/common"
 
+# Install gruvbox-zsh theme
+if [ ! -d "$HOME/.oh-my-zsh/custom/themes/gruvbox" ]; then
+    echo "Installing gruvbox-zsh theme..."
+    git clone https://github.com/sbugzu/gruvbox-zsh.git "$HOME/.oh-my-zsh/custom/themes/gruvbox"
+    echo "  Gruvbox theme installed"
+else
+    echo "  Gruvbox theme already installed"
+fi
+
 safe_symlink "$COMMON_DIR/.gitconfig" "$HOME/.gitconfig"
 safe_symlink "$COMMON_DIR/.gitignore" "$HOME/.gitignore"
 safe_symlink "$COMMON_DIR/.hushlogin" "$HOME/.hushlogin"

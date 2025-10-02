@@ -10,48 +10,9 @@ export TERM="screen-256color"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="agnoster"
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-# POWERLEVEL9K_MODE='awesome-fontconfig' # This is another way
-
-# Disable dir/git icons
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-
-# DISABLE_AUTO_TITLE="true"
-
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-# POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
-# POWERLEVEL9K_SHOW_CHANGESET='true'
-
-# Root indicator config
-POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="red"
-POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="white"
-POWERLEVEL9K_ROOT_ICON='\u26A1'
-
-# Prompt elements
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon root_indicator context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs virtualenv rbenv rvm time)
-
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S \uf073 %d.%m.%y}"
-
-POWERLEVEL9K_STATUS_VERBOSE=false
-
-export DEFAULT_USER="$USER"
+ZSH_THEME="gruvbox/gruvbox"
+SOLARIZED_THEME="dark"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
