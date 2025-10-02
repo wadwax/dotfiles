@@ -77,7 +77,6 @@ else
 fi
 
 safe_symlink "$COMMON_DIR/.gitconfig" "$HOME/.gitconfig"
-safe_symlink "$COMMON_DIR/.gitignore" "$HOME/.gitignore"
 safe_symlink "$COMMON_DIR/.hushlogin" "$HOME/.hushlogin"
 safe_symlink "$COMMON_DIR/.inputrc" "$HOME/.inputrc"
 safe_symlink "$COMMON_DIR/.screenrc" "$HOME/.screenrc"
