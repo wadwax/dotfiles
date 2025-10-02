@@ -46,7 +46,7 @@ $INSTALL_CMD \
     unzip \
     build-essential 2>/dev/null || $INSTALL_CMD curl wget git zsh ripgrep tree htop unzip
 
-# Install tmux 3.3+ from source (required for allow-passthrough for image.nvim)
+# Install tmux 3.3+
 echo "Checking tmux version..."
 TMUX_VERSION=$(tmux -V 2>/dev/null | grep -oP '\d+\.\d+' | head -1 || echo "0.0")
 REQUIRED_VERSION="3.3"
@@ -78,34 +78,6 @@ if awk "BEGIN {exit !($TMUX_VERSION < $REQUIRED_VERSION)}"; then
 else
     echo "tmux $TMUX_VERSION is already installed and meets requirements"
 fi
-
-# Install Lua 5.1 and luarocks (required for image.nvim)
-echo "Installing Lua 5.1 and luarocks for image.nvim..."
-if [ "$PKG_MANAGER" = "apt-get" ]; then
-    $INSTALL_CMD lua5.1 liblua5.1-0-dev luarocks
-elif [ "$PKG_MANAGER" = "dnf" ]; then
-    $INSTALL_CMD lua lua-devel luarocks
-elif [ "$PKG_MANAGER" = "yum" ]; then
-    $INSTALL_CMD lua lua-devel luarocks
-elif [ "$PKG_MANAGER" = "pacman" ]; then
-    $INSTALL_CMD lua51 luarocks
-fi
-
-# Install ImageMagick (required for image.nvim)
-echo "Installing ImageMagick for Neovim image support..."
-if [ "$PKG_MANAGER" = "apt-get" ]; then
-    $INSTALL_CMD imagemagick libmagickwand-dev
-elif [ "$PKG_MANAGER" = "dnf" ]; then
-    $INSTALL_CMD ImageMagick ImageMagick-devel
-elif [ "$PKG_MANAGER" = "yum" ]; then
-    $INSTALL_CMD ImageMagick ImageMagick-devel
-elif [ "$PKG_MANAGER" = "pacman" ]; then
-    $INSTALL_CMD imagemagick
-fi
-
-# Install magick luarock for image.nvim
-echo "Installing magick luarock..."
-sudo luarocks install magick
 
 # Install Node.js and npm (required for LSP servers)
 if ! command -v node &> /dev/null; then

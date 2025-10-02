@@ -33,12 +33,6 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
-      {
-        "3rd/image.nvim",              -- Optional image support in preview window
-        opts = {
-          processor = "magick_cli",    -- Use ImageMagick CLI (requires imagemagick package)
-        },
-      },
     },
     opts = {
       filesystem = {
