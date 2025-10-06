@@ -15,12 +15,7 @@ require("lazy").setup({
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = true,
-  },
-  { "catppuccin/nvim",        name = "catppuccin",     priority = 1000 },
-  {
-    "EdenEast/nightfox.nvim",
-    name = "nightfox",
-    priority = 1000
+    opts = {}
   }, -- File explorer
   {
     "goolord/alpha-nvim",
@@ -297,7 +292,7 @@ require("lazy").setup({
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-      theme = "catppuccin",
+      theme = "gruvbox",
       sections = {
         lualine_a = {"mode"},
         lualine_b = {"branch", "diff", "diagnostics"},
