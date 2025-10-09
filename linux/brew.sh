@@ -77,6 +77,29 @@ install_tmux() {
     echo ""
 }
 
+# Install ngrok
+install_ngrok() {
+    echo "Installing ngrok..."
+
+    if command -v ngrok &> /dev/null; then
+        echo "  ✓ ngrok is already installed"
+    else
+        if [ "$PKG_MANAGER" = "apt-get" ]; then
+            curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+                | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+                && echo "deb https://ngrok-agent.s3.amazonaws.com jammy main" \
+                | sudo tee /etc/apt/sources.list.d/ngrok.list \
+                && sudo apt update \
+                && sudo apt install -y ngrok
+            echo "  ✓ ngrok installed"
+        else
+            echo "  ⚠️  ngrok installation only supported on Debian/Ubuntu via apt"
+            echo "     Please install manually from https://ngrok.com/download"
+        fi
+    fi
+    echo ""
+}
+
 # Install Linux-specific utilities
 install_linux_utilities() {
     echo "Installing Linux-specific utilities..."
@@ -92,6 +115,7 @@ install_linux_utilities() {
 # Main installation flow
 main() {
     install_tmux
+    install_ngrok
     install_linux_utilities
 
     echo "=================================="
