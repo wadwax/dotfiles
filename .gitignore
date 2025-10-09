@@ -1,26 +1,13 @@
 /*
-.DS_Store
 
-!.gitconfig
-!.gitignore
-!.hushlogin
-!macos.sh
-!.inputrc
-!.screenrc
-!.zprofile
-!.zshrc
-!bootstrap.sh
-!brew.sh
-!Brewfile
-!install-packages.sh
-!.tmux.conf
-!.tmux.conf.osx
-!.config/
-.config/*
-!.config/nvim/
-!.config/aerospace/
-!.config/starship.toml
-!.ssh/
+# Allow directories
+!common/
+!linux/
+!macos/
 !iterm/
-!LICENSE-MIT.txt
+
+# Allow root files
+!.gitignore
+!install.sh
 !README.md
+!LICENSE-MIT.txt
