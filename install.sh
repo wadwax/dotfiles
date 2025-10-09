@@ -67,13 +67,21 @@ echo "Installing common dotfiles..."
 DOTFILES_DIR="$(pwd)"
 COMMON_DIR="$DOTFILES_DIR/common"
 
-# Install gruvbox-zsh theme
-if [ ! -d "$HOME/.oh-my-zsh/custom/themes/gruvbox" ]; then
-    echo "Installing gruvbox-zsh theme..."
-    git clone https://github.com/sbugzu/gruvbox-zsh.git "$HOME/.oh-my-zsh/custom/themes/gruvbox"
-    echo "  Gruvbox theme installed"
+# Install starship prompt
+if ! command -v starship &> /dev/null; then
+    echo "Installing starship prompt..."
+    if [[ "$OS" == "macos" ]]; then
+        if command -v brew &> /dev/null; then
+            brew install starship
+        else
+            curl -sS https://starship.rs/install.sh | sh
+        fi
+    elif [[ "$OS" == "linux" ]]; then
+        curl -sS https://starship.rs/install.sh | sh
+    fi
+    echo "  Starship installed"
 else
-    echo "  Gruvbox theme already installed"
+    echo "  Starship already installed"
 fi
 
 safe_symlink "$COMMON_DIR/.gitconfig" "$HOME/.gitconfig"
@@ -81,14 +89,22 @@ safe_symlink "$COMMON_DIR/.hushlogin" "$HOME/.hushlogin"
 safe_symlink "$COMMON_DIR/.inputrc" "$HOME/.inputrc"
 safe_symlink "$COMMON_DIR/.screenrc" "$HOME/.screenrc"
 safe_symlink "$COMMON_DIR/.tmux.conf" "$HOME/.tmux.conf"
-# Reload tmux config if tmux is running
-if command -v tmux &> /dev/null && tmux info &> /dev/null; then
-    tmux source-file "$HOME/.tmux.conf"
-    echo "  Reloaded tmux configuration"
+# Reload tmux config
+if command -v tmux &> /dev/null; then
+    if tmux info &> /dev/null; then
+        # Tmux is running, reload config
+        tmux source-file "$HOME/.tmux.conf"
+        echo "  Reloaded tmux configuration"
+    else
+        # Start temp session to load config, then kill it
+        tmux new-session -d -s temp_config_load && tmux source-file "$HOME/.tmux.conf" && tmux kill-session -t temp_config_load
+        echo "  Loaded tmux configuration"
+    fi
 fi
 safe_symlink "$COMMON_DIR/.zprofile" "$HOME/.zprofile"
 safe_symlink "$COMMON_DIR/.ssh/config" "$HOME/.ssh/config"
 safe_symlink "$COMMON_DIR/.config/nvim" "$HOME/.config/nvim"
+safe_symlink "$COMMON_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
 
 echo ""
 

@@ -12,7 +12,7 @@ vim.g.maplocalleader = " "
 
 require("lazy").setup({
   {
-    "ellisonleao/gruvbox.nvim",
+    "vague-theme/vague.nvim",
     priority = 1000,
     config = true,
     opts = {}
@@ -292,7 +292,7 @@ require("lazy").setup({
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-      theme = "gruvbox",
+      theme = "vague",
       sections = {
         lualine_a = {"mode"},
         lualine_b = {"branch", "diff", "diagnostics"},

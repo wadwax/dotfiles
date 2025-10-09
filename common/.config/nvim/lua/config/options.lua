@@ -61,6 +61,4 @@ opt.hidden = true
 opt.errorbells = false
 opt.shortmess:append("c")
 
--- Set up colorscheme
--- vim.cmd("colorscheme gruvbox")
 vim.cmd("syntax enable")

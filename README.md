@@ -287,6 +287,34 @@ Don't blindly use these settings unless you understand what they do!
 
 Originally forked and customized from various dotfiles repositories. Special thanks to the open-source community for inspiration and tools.
 
+## iTerm2 Setup (macOS)
+
+After running the install script, iTerm2 users should import the provided configurations:
+
+### Import Color Scheme
+
+1. Open iTerm2 → Preferences (⌘,)
+2. Go to Profiles → Colors
+3. Click "Color Presets..." dropdown → "Import..."
+4. Navigate to `~/dotfiles/iterm/catppuccin-mocha.itermcolors`
+5. Select the imported "Catppuccin Mocha" from the Color Presets dropdown
+
+### Import Profile
+
+1. Open iTerm2 → Preferences (⌘,)
+2. Go to Profiles
+3. Click the "Other Actions..." dropdown (bottom left) → "Import JSON Profiles..."
+4. Navigate to `~/dotfiles/iterm/profile.json`
+5. Select and import the profile
+
+### Import Key Mappings
+
+1. Open iTerm2 → Preferences (⌘,)
+2. Go to Profiles → Keys → Key Mappings
+3. Click "Presets..." dropdown → "Import..."
+4. Navigate to `~/dotfiles/iterm/iterm.itermkeymap`
+5. Load the key mappings
+
 ## License
 
 MIT License - See LICENSE-MIT.txt for details.

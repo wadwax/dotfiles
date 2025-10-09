@@ -4,7 +4,9 @@
       "WebSearch",
       "WebFetch(domain:man.archlinux.org)",
       "Bash(tmux show-options:*)",
-      "Bash(tmux:*)"
+      "Bash(tmux:*)",
+      "WebFetch(domain:starship.rs)",
+      "Bash(curl -s https://raw.githubusercontent.com/starship/starship/master/docs/public/presets/toml/catppuccin-powerline.toml)"
     ],
     "deny": [],
     "ask": []
