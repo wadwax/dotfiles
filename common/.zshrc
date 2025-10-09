@@ -198,6 +198,36 @@ alias tp="tmux splitw"
 alias tpv="tmux splitw -v"
 alias tph="tmux splitw -h"
 
+# Docker & Docker Compose
+alias d="docker"
+alias dc="docker compose"
+alias dcu="docker compose up"
+alias dcud="docker compose up -d"
+alias dcd="docker compose down"
+alias dcr="docker compose restart"
+alias dcs="docker compose stop"
+alias dcl="docker compose logs"
+alias dclf="docker compose logs -f"
+alias dcps="docker compose ps"
+alias dcb="docker compose build"
+alias dcbn="docker compose build --no-cache"
+alias dce="docker compose exec"
+alias dcpull="docker compose pull"
+alias dcrm="docker compose rm -f"
+alias dcstart="docker compose start"
+
+# Docker system commands
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias di="docker images"
+alias drmi="docker rmi"
+alias dprune="docker system prune -af --volumes"
+alias dstop="docker stop"
+alias drm="docker rm"
+alias dexec="docker exec -it"
+alias dlogs="docker logs"
+alias dlogsf="docker logs -f"
+
 #export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # append completions to fpath
