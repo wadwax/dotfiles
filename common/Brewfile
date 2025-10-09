@@ -1,0 +1,16 @@
+# Common packages for both Linux and macOS via Homebrew
+
+# Core utilities
+brew "curl"
+brew "wget"
+brew "git"
+brew "git-lfs"
+brew "zsh"
+brew "zsh-syntax-highlighting"
+brew "tmux"
+brew "neovim"
+brew "ripgrep"
+brew "tree"
+brew "htop"
+brew "node"
+brew "starship"

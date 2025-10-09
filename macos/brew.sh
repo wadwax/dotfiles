@@ -1,40 +1,53 @@
 #!/usr/bin/env bash
 
-cd $(dirname $BASH_SOURCE);
+# macOS-specific CLI tool installation
+# Additional CLI tools and utilities specific to macOS
 
-# Install command-line tools using Homebrew.
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+set -e
 
-# Make sure we’re using the latest Homebrew.
+cd "$(dirname "$0")"
+
+echo "=================================="
+echo "macOS-Specific CLI Tools Installation"
+echo "=================================="
+echo ""
+
+# Ensure Homebrew is available
+if ! command -v brew &> /dev/null; then
+    echo "Error: Homebrew is not installed. Please run common/install-packages.sh first."
+    exit 1
+fi
+
+# Make sure we're using the latest Homebrew
+echo "Updating Homebrew..."
 brew update
+echo ""
 
-# Upgrade any already-installed formulae.
+# Upgrade any already-installed formulae
+echo "Upgrading installed packages..."
 brew upgrade
+echo ""
 
-# Save Homebrew’s installed location.
+# Save Homebrew's installed location
 BREW_PREFIX=$(brew --prefix)
 
+echo "Installing macOS-specific CLI tools..."
 
-# Install GNU core utilities (those that come with macOS are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
+# Install GNU core utilities (those that come with macOS are outdated)
+echo "  Installing GNU core utilities..."
 brew install coreutils
-ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+ln -sf "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum" 2>/dev/null || true
 
-# Install some other useful utilities like `sponge`.
+# Install some other useful utilities like `sponge`
 brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 brew install findutils
-# Install GNU `sed`, overwriting the built-in `sed`.
+
+# Install GNU `sed`, overwriting the built-in `sed`
 brew install gnu-sed
-export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
-# Install `wget` with IRI support.
-brew install wget
-
-# Install GnuPG to enable PGP-signing commits.
-# brew install gnupg
-
-# Install more recent versions of some macOS tools.
+# Install more recent versions of some macOS tools
 brew install vim
 brew install grep
 brew install openssh
@@ -42,13 +55,14 @@ brew install screen
 brew install php
 brew install gmp
 
-# Install font tools.
+# Install font tools
 brew tap bramstein/webfonttools
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 
-# Install some CTF tools; see https://github.com/ctfs/write-ups.
+# Install CTF tools (optional, comment out if not needed)
+echo "  Installing CTF tools..."
 brew install aircrack-ng
 brew install bfg
 brew install binutils
@@ -74,11 +88,9 @@ brew install ucspi-tcp # `tcpserver` etc.
 brew install xpdf
 brew install xz
 
-# Install other useful binaries.
+# Install other useful binaries
+echo "  Installing additional utilities..."
 brew install ack
-#brew install exiv2
-brew install git
-brew install git-lfs
 brew install gs
 brew install imagemagick
 brew install lua
@@ -89,20 +101,31 @@ brew install pv
 brew install rename
 brew install rlwrap
 brew install ssh-copy-id
-brew install tree
 brew install vbindiff
 brew install zopfli
+
 # Node.js version manager
 brew install nodebrew
-# UNIX shell (command interpreter)
-brew install zsh
-# oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# Theme
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
-# Install GUI
-brew bundle --file $PWD/Brewfile
+echo ""
+echo "✓ macOS-specific CLI tools installed"
+echo ""
 
-# Remove outdated versions from the cellar.
+# Install GUI applications from Brewfile
+echo "=================================="
+echo "Installing GUI Applications"
+echo "=================================="
+echo ""
+echo "Running: brew bundle --file $PWD/Brewfile"
+brew bundle --file "$PWD/Brewfile"
+echo ""
+
+# Remove outdated versions from the cellar
+echo "Cleaning up..."
 brew cleanup
+echo ""
+
+echo "=================================="
+echo "macOS installation complete!"
+echo "=================================="
+echo ""

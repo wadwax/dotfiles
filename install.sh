@@ -116,15 +116,20 @@ if [[ "$OS" == "linux" ]]; then
     safe_symlink "$LINUX_DIR/.zshrc" "$HOME/.zshrc"
 
     echo ""
-    echo "Would you like to install Linux packages? (y/n)"
+    echo "Would you like to install packages? (y/n)"
     read -r install_packages
 
     if [[ "$install_packages" =~ ^[Yy]$ ]]; then
-        echo "Installing Linux packages..."
-        bash "$LINUX_DIR/install-packages.sh"
+        echo "Installing common packages..."
+        bash "$COMMON_DIR/install-packages.sh"
+        echo ""
+        echo "Installing Linux-specific packages..."
+        bash "$LINUX_DIR/brew.sh"
     else
         echo "Skipping package installation."
-        echo "You can run it later with: bash $LINUX_DIR/install-packages.sh"
+        echo "You can run it later with:"
+        echo "  bash $COMMON_DIR/install-packages.sh"
+        echo "  bash $LINUX_DIR/brew.sh"
     fi
 
 elif [[ "$OS" == "macos" ]]; then
@@ -137,15 +142,20 @@ elif [[ "$OS" == "macos" ]]; then
     safe_symlink "$MACOS_DIR/.config/aerospace" "$HOME/.config/aerospace"
 
     echo ""
-    echo "Would you like to install Homebrew packages? (y/n)"
+    echo "Would you like to install packages? (y/n)"
     read -r install_packages
 
     if [[ "$install_packages" =~ ^[Yy]$ ]]; then
-        echo "Installing Homebrew packages..."
+        echo "Installing common packages..."
+        bash "$COMMON_DIR/install-packages.sh"
+        echo ""
+        echo "Installing macOS-specific packages and GUI applications..."
         bash "$MACOS_DIR/brew.sh"
     else
-        echo "Skipping Homebrew installation."
-        echo "You can run it later with: bash $MACOS_DIR/brew.sh"
+        echo "Skipping package installation."
+        echo "You can run it later with:"
+        echo "  bash $COMMON_DIR/install-packages.sh"
+        echo "  bash $MACOS_DIR/brew.sh"
     fi
 
     echo ""
