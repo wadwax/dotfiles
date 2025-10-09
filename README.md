@@ -296,8 +296,8 @@ After running the install script, iTerm2 users should import the provided config
 1. Open iTerm2 → Preferences (⌘,)
 2. Go to Profiles → Colors
 3. Click "Color Presets..." dropdown → "Import..."
-4. Navigate to `~/dotfiles/iterm/catppuccin-mocha.itermcolors`
-5. Select the imported "Catppuccin Mocha" from the Color Presets dropdown
+4. Navigate to `~/dotfiles/iterm/tokyo-night.itermcolors`
+5. Select the imported "Tokyo Night" from the Color Presets dropdown
 
 ### Import Profile
 
