@@ -3,36 +3,13 @@
 
 export TERM="screen-256color"
 
-# Initialize Starship prompt
-eval "$(starship init zsh)"
+# Initialize Starship prompt (only in zsh)
+if [ -n "$ZSH_VERSION" ]; then
+  eval "$(starship init zsh)"
+fi
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -256,13 +233,6 @@ alias drm="docker rm"
 alias dexec="docker exec -it"
 alias dlogs="docker logs"
 alias dlogsf="docker logs -f"
-
-#export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
 
 # pnpm
 export PNPM_HOME="/Users/koki.fujiwara/Library/pnpm"
