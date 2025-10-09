@@ -12,12 +12,14 @@
 !bootstrap.sh
 !brew.sh
 !Brewfile
+!install-packages.sh
 !.tmux.conf
 !.tmux.conf.osx
 !.config/
 .config/*
 !.config/nvim/
 !.config/aerospace/
+!.config/starship.toml
 !.ssh/
 !iterm/
 !LICENSE-MIT.txt
