@@ -31,29 +31,18 @@ if [[ "$OS" == "unknown" ]]; then
     exit 1
 fi
 
-# Function to backup existing files
-backup_file() {
-    local file=$1
-    if [ -e "$file" ] || [ -L "$file" ]; then
-        local backup="${file}.backup.$(date +%Y%m%d_%H%M%S)"
-        echo "  Backing up existing $file to $backup"
-        mv "$file" "$backup"
-    fi
-}
-
 # Function to create symlink with backup
 safe_symlink() {
     local source=$1
     local target=$2
 
-    backup_file "$target"
     ln -sf "$source" "$target"
     echo "  Linked: $target -> $source"
 }
 
 # Pull latest changes
 echo "Pulling latest changes from git..."
-git pull origin main 2>/dev/null || echo "  (Skipping git pull - not in a git repo or no remote)"
+# git pull origin main 2>/dev/null || echo "  (Skipping git pull - not in a git repo or no remote)"
 echo ""
 
 # Create necessary directories
