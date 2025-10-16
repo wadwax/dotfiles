@@ -6,7 +6,12 @@
       "Bash(tmux show-options:*)",
       "Bash(tmux:*)",
       "WebFetch(domain:starship.rs)",
-      "Bash(curl -s https://raw.githubusercontent.com/starship/starship/master/docs/public/presets/toml/catppuccin-powerline.toml)"
+      "Bash(curl -s https://raw.githubusercontent.com/starship/starship/master/docs/public/presets/toml/catppuccin-powerline.toml)",
+      "Bash(git stash:*)",
+      "Bash(git rebase:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nSeparate .zprofile for macOS and Linux\n\nMove .zprofile from common/ to OS-specific directories to handle\ndifferent Homebrew installation paths:\n- macOS: /opt/homebrew/bin/brew (Apple Silicon)\n- Linux: /home/linuxbrew/.linuxbrew/bin/brew\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
