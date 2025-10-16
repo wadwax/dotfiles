@@ -36,6 +36,8 @@ safe_symlink() {
     local source=$1
     local target=$2
 
+    # Remove existing symlink or file to force relink
+    rm -rf "$target"
     ln -sf "$source" "$target"
     echo "  Linked: $target -> $source"
 }
