@@ -53,6 +53,9 @@ opt.undofile = true
 opt.updatetime = 300
 opt.timeoutlen = 500
 
+-- Auto-reload files when changed outside vim
+opt.autoread = true
+
 -- Better completion experience
 opt.completeopt = "menuone,noselect"
 

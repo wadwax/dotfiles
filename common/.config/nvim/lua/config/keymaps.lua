@@ -37,6 +37,12 @@ map("n", "<leader>gs", ":G<CR>", { silent = true })
 map("n", "<leader>gc", ":Git commit<CR>", { silent = true })
 map("n", "<leader>gp", ":Git push<CR>", { silent = true })
 
+-- Diffview mappings
+map("n", "<leader>dd", "<cmd>DiffviewOpen %<CR>", { silent = true, desc = "Diff current file" })
+map("n", "<leader>do", "<cmd>DiffviewOpen<CR>", { silent = true, desc = "Open diffview" })
+map("n", "<leader>dx", "<cmd>DiffviewClose<CR>", { silent = true, desc = "Close diffview" })
+map("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>", { silent = true, desc = "File history" })
+
 
 
 -- Buffer navigation

@@ -287,7 +287,17 @@ require("lazy").setup({
       })
     end,
   }, -- Git
-  { "tpope/vim-fugitive" }, -- Status line
+  { "tpope/vim-fugitive" },
+  {
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory", "DiffviewToggleFiles" },
+    config = function()
+      require("diffview").setup({
+        enhanced_diff_hl = true,
+      })
+    end
+  }, -- Status line
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
