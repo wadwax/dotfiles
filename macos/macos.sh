@@ -129,18 +129,25 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Trackpad: map bottom right corner to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+# Trackpad: Enable 2-finger tap for right-click (secondary click)
+echo "Trackpad: Enabling 2-finger tap for right-click..."
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
-# Trackpad: three finger swipe to drag
-echo "Trackpad: three finger swipe to drag"
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
+# Trackpad: map bottom right corner to right-click (additional option)
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+
+# Trackpad: Enable three-finger drag (Accessibility feature)
+# This allows you to drag windows and items by clicking and moving with three fingers
+# Note: This requires logout/login to take full effect
+echo "Trackpad: Enabling three-finger drag..."
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerDragGesture -bool true
 defaults write com.apple.AppleMultitouchTrackpad DragLock -bool false
 defaults write com.apple.AppleMultitouchTrackpad Dragging -bool false
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
@@ -412,14 +419,15 @@ defaults write com.apple.dashboard mcx-disabled -bool true
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
-# Don’t automatically rearrange Spaces based on most recent use
+# Don't automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
+# Dock autohide configuration
+# Note: These changes will take effect after the Dock is restarted (done automatically at the end of this script)
 # Remove the auto-hiding Dock delay
 defaults write com.apple.dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock
 defaults write com.apple.dock autohide-time-modifier -float 0
-
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
@@ -916,6 +924,10 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 # Kill affected applications                                                  #
 ###############################################################################
 
+# Note: Terminal is intentionally excluded from this list to prevent the script
+# from terminating its own parent process. You may need to restart Terminal
+# manually after this script completes to see all changes take effect.
+
 for app in "Activity Monitor" \
 	"Address Book" \
 	"Calendar" \
@@ -933,11 +945,27 @@ for app in "Activity Monitor" \
 	"SizeUp" \
 	"Spectacle" \
 	"SystemUIServer" \
-	"Terminal" \
 	"Transmission" \
 	"Tweetbot" \
 	"Twitter" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+echo ""
+echo "Done! macOS defaults have been applied."
+echo ""
+echo "=========================================="
+echo "NEXT STEPS:"
+echo "=========================================="
+echo ""
+echo "1. Quit and restart Terminal.app manually"
+echo "2. LOG OUT and LOG BACK IN to apply all settings"
+echo ""
+echo "The following settings require a logout/login:"
+echo "  - Three-finger drag"
+echo "  - Trackpad and keyboard settings"
+echo "  - System UI preferences"
+echo ""
+echo "The Dock has been restarted and should already be working."
+echo ""
