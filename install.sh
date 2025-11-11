@@ -105,22 +105,11 @@ if [[ "$OS" == "linux" ]]; then
     echo "Installing Linux-specific dotfiles..."
     LINUX_DIR="$DOTFILES_DIR/linux"
 
+    echo "Installing common packages..."
+    bash "$COMMON_DIR/install-packages.sh"
     echo ""
-    echo "Would you like to install packages? (y/n)"
-    read -r install_packages
-
-    if [[ "$install_packages" =~ ^[Yy]$ ]]; then
-        echo "Installing common packages..."
-        bash "$COMMON_DIR/install-packages.sh"
-        echo ""
-        echo "Installing Linux-specific packages..."
-        bash "$LINUX_DIR/brew.sh"
-    else
-        echo "Skipping package installation."
-        echo "You can run it later with:"
-        echo "  bash $COMMON_DIR/install-packages.sh"
-        echo "  bash $LINUX_DIR/brew.sh"
-    fi
+    echo "Installing Linux-specific packages..."
+    bash "$LINUX_DIR/brew.sh"
 
 elif [[ "$OS" == "macos" ]]; then
     echo "Installing macOS-specific dotfiles..."
