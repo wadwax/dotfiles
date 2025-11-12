@@ -11,7 +11,20 @@
       "Bash(git rebase:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nSeparate .zprofile for macOS and Linux\n\nMove .zprofile from common/ to OS-specific directories to handle\ndifferent Homebrew installation paths:\n- macOS: /opt/homebrew/bin/brew (Apple Silicon)\n- Linux: /home/linuxbrew/.linuxbrew/bin/brew\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(sudo /Users/koki/dotfiles/macos/macos.sh:*)",
+      "Bash(wait:*)",
+      "Bash(defaults read:*)",
+      "Bash(defaults -currentHost read:*)",
+      "Bash(defaults write:*)",
+      "Bash(killall:*)",
+      "Bash(bash -x)",
+      "Bash(bash)",
+      "Bash(bash -c 'set -e; source <(sed -n \"\"421,428p\"\" macos.sh)')",
+      "Bash(bash:*)",
+      "Bash(defaults delete:*)",
+      "Bash(/tmp/macos_output.txt)",
+      "Bash(git remote set-url:*)"
     ],
     "deny": [],
     "ask": []
