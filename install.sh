@@ -68,7 +68,7 @@ if ! command -v starship &> /dev/null; then
             curl -sS https://starship.rs/install.sh | sh
         fi
     elif [[ "$OS" == "linux" ]]; then
-        curl -sS https://starship.rs/install.sh | sh
+        curl -sS https://starship.rs/install.sh | sh -s -- --yes
     fi
     echo "  Starship installed"
 else
