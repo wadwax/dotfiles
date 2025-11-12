@@ -92,7 +92,6 @@ if command -v tmux &> /dev/null; then
         echo "  Loaded tmux configuration"
     fi
 fi
-safe_symlink "$COMMON_DIR/.zprofile" "$HOME/.zprofile"
 safe_symlink "$COMMON_DIR/.zshrc" "$HOME/.zshrc"
 safe_symlink "$COMMON_DIR/.ssh/config" "$HOME/.ssh/config"
 safe_symlink "$COMMON_DIR/.config/nvim" "$HOME/.config/nvim"
@@ -105,6 +104,8 @@ if [[ "$OS" == "linux" ]]; then
     echo "Installing Linux-specific dotfiles..."
     LINUX_DIR="$DOTFILES_DIR/linux"
 
+    safe_symlink "$LINUX_DIR/.zprofile" "$HOME/.zprofile"
+
     echo "Installing common packages..."
     bash "$COMMON_DIR/install-packages.sh"
     echo ""
@@ -115,7 +116,7 @@ elif [[ "$OS" == "macos" ]]; then
     echo "Installing macOS-specific dotfiles..."
     MACOS_DIR="$DOTFILES_DIR/macos"
 
-    safe_symlink "$MACOS_DIR/.zprofile" "$HOME/.zprofile.local"
+    safe_symlink "$MACOS_DIR/.zprofile" "$HOME/.zprofile"
     safe_symlink "$MACOS_DIR/.tmux.conf.osx" "$HOME/.tmux.conf.osx"
     safe_symlink "$MACOS_DIR/.config/aerospace" "$HOME/.config/aerospace"
 

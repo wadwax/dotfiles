@@ -14,8 +14,18 @@ echo ""
 
 # Ensure Homebrew is available
 if ! command -v brew &> /dev/null; then
-    echo "Error: Homebrew is not installed. Please run common/install-packages.sh first."
-    exit 1
+    # Try to add Homebrew to PATH
+    if [ -d "$HOME/.linuxbrew" ]; then
+        eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+    elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
+
+    # Check again
+    if ! command -v brew &> /dev/null; then
+        echo "Error: Homebrew is not installed. Please run common/install-packages.sh first."
+        exit 1
+    fi
 fi
 
 # Detect native package manager
