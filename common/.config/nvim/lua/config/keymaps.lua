@@ -76,4 +76,5 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true, desc = "Exit terminal mod
 map("t", "<C-h>", "<C-\\><C-n><C-w>h", { silent = true, desc = "Escape Claude to previous panel" })
 map("n", "<leader>cc", ":ClaudeCode<CR>", { silent = true, desc = "Toggle Claude" })
 
-
+-- Diffview
+map("n", "<leader>dc", ":DiffviewClose", { silent = true, desc = "Close Diffview" })

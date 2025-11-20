@@ -12,6 +12,9 @@ vim.g.maplocalleader = " "
 
 require("lazy").setup({
   {
+    "sindrets/diffview.nvim"
+  },
+  {
     "vague-theme/vague.nvim",
     priority = 1000,
     config = true,
