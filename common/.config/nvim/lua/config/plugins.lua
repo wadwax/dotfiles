@@ -187,6 +187,7 @@ require("lazy").setup({
       "hrsh7th/cmp-cmdline",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "milanglacier/minuet-ai.nvim",
     },
     config = function()
       local cmp = require('cmp')
@@ -201,9 +202,28 @@ require("lazy").setup({
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-Tab>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
+          ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Ctrl-y to accept
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-n>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<C-p>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -224,6 +244,7 @@ require("lazy").setup({
           end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
+          { name = 'minuet' },      -- AI completions first
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
         }, {
@@ -255,38 +276,31 @@ require("lazy").setup({
     config = function()
       require('minuet').setup({
         provider = 'claude',
-        request_timeout = 30,        -- 30 second timeout for Claude API
-        context_window = 1024,       -- Context size (start conservative)
-        n_completions = 1,           -- Number of suggestions
+        request_timeout = 3,         -- 3 second timeout for fast responses
+        context_window = 16000,      -- Default context window
+        n_completions = 3,           -- Number of suggestions
+        add_single_line_entry = true, -- Also show single-line completions
 
         provider_options = {
           claude = {
-            model = 'claude-3-5-sonnet-20241022',
+            model = 'claude-sonnet-4-5',
             stream = true,
             api_key = 'ANTHROPIC_API_KEY',
             end_point = 'https://api.anthropic.com/v1/messages',
             optional = {
-              max_tokens = 256,      -- Conservative default per docs
+              max_tokens = 512,
             },
           },
         },
 
-        virtualtext = {
-          enabled = true,
-          manual = false,
-          auto_trigger_ft = {},          -- Empty = ALL filetypes
-          keymap = {
-            accept = '<C-j>',            -- Accept full completion
-            accept_line = '<C-l>',       -- Accept one line
-            prev = '<C-[>',              -- Previous suggestion
-            next = '<C-]>',              -- Next suggestion
-            dismiss = '<C-x>',           -- Dismiss suggestion
-          },
+        -- Enable cmp integration
+        cmp = {
+          enable_auto_complete = true,
         },
 
         -- Performance settings
-        throttle = 1000,               -- Rate limiting
-        debounce = 500,                -- Wait before triggering
+        throttle = 1000,             -- Rate limiting (ms)
+        debounce = 400,              -- Wait before triggering (ms)
       })
     end,
   }, -- Git

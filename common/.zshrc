@@ -247,3 +247,6 @@ case ":$PATH:" in
 esac
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(~/.local/bin/mise activate zsh)"
+
+# Minuet AI Completion - Set your Anthropic API key
+export ANTHROPIC_API_KEY='sk-ant-XXXXXXXXXXXXXXXXXXXXXXX'
