@@ -344,7 +344,8 @@ require("lazy").setup({
     "styled-components/vim-styled-components",
     branch = "main"
   }, { "jparise/vim-graphql" }, { "pangloss/vim-javascript" }, { "MaxMEllon/vim-jsx-pretty" }, { "HerringtonDarkholme/yats.vim" },
-  { "ap/vim-css-color" }, { "evanleck/vim-svelte" }, { "jvirtanen/vim-hcl" }, -- PlantUML
+  -- { "ap/vim-css-color" }, -- Disabled due to E121: Undefined variable: b:css_color_pat error
+  { "evanleck/vim-svelte" }, { "jvirtanen/vim-hcl" }, -- PlantUML
   {
     "aklt/plantuml-syntax",
     dependencies = { "tyru/open-browser.vim", "weirongxu/plantuml-previewer.vim" }
