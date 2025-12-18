@@ -225,6 +225,7 @@ alias dcstart="docker compose start"
 
 # Docker system commands
 alias dps="docker ps"
+alias dpss="docker ps --format \"table {{.Names}}\t{{.Status}}\""
 alias dpsa="docker ps -a"
 alias di="docker images"
 alias drmi="docker rmi"
@@ -249,4 +250,4 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(~/.local/bin/mise activate zsh)"
 
 # Minuet AI Completion - Set your Anthropic API key
-export ANTHROPIC_API_KEY='sk-ant-XXXXXXXXXXXXXXXXXXXXXXX'
+# export ANTHROPIC_API_KEY='sk-ant-XXXXXXXXXXXXXXXXXXXXXXX'
