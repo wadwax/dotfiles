@@ -386,6 +386,53 @@ require("lazy").setup({
   }, -- Tmux integration
   { "christoomey/vim-tmux-navigator" },
 
+  -- Formatter
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    config = function()
+      local conform = require("conform")
+      local util = require("conform.util")
+
+      conform.setup({
+        formatters_by_ft = {
+          javascript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescript = { "prettier" },
+          typescriptreact = { "prettier" },
+          css = { "prettier" },
+          html = { "prettier" },
+          json = { "prettier" },
+          jsonc = { "prettier" },
+          yaml = { "prettier" },
+          markdown = { "prettier" },
+          graphql = { "prettier" },
+          rust = { "rustfmt" },
+          python = { "ruff_format" },
+        },
+        format_on_save = {
+          timeout_ms = 2000,
+          lsp_fallback = true,
+        },
+        formatters = {
+          prettier = {
+            command = util.from_node_modules("prettier"),
+            cwd = util.root_file({
+              ".prettierrc",
+              ".prettierrc.json",
+              ".prettierrc.yml",
+              ".prettierrc.yaml",
+              ".prettierrc.js",
+              "prettier.config.js",
+              "package.json",
+            }),
+          },
+        },
+      })
+    end,
+  },
+
   -- Claude Code plugin
   {
     "coder/claudecode.nvim",
