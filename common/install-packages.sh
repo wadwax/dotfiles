@@ -142,8 +142,28 @@ install_claude_code() {
         echo "  ✓ Claude Code is already installed"
     else
         echo "  Installing Claude Code..."
-        curl -fsSL https://claude.ai/install.sh | bash
-        echo "  ✓ Claude Code installed"
+        # Download the installer script first
+        local installer="/tmp/claude-install-$$.sh"
+        if curl -fsSL https://claude.ai/install.sh -o "$installer"; then
+            chmod +x "$installer"
+            # Try normal install first, if it fails due to lock, wait and retry with --force
+            if ! bash "$installer" 2>/dev/null; then
+                echo "  First attempt failed, waiting for any existing installation..."
+                sleep 5
+                # Retry with --force to override lock check
+                bash "$installer" --force || {
+                    echo "  ⚠️  Claude Code installation failed. You can install manually later with:"
+                    echo "     curl -fsSL https://claude.ai/install.sh | sh --force"
+                    rm -f "$installer"
+                    return 0
+                }
+            fi
+            rm -f "$installer"
+            echo "  ✓ Claude Code installed"
+        else
+            echo "  ⚠️  Failed to download Claude Code installer"
+            return 0
+        fi
     fi
     echo ""
 }
