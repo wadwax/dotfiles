@@ -454,8 +454,8 @@ require("lazy").setup({
       })
     end,
     keys = {
-    { "<leader>a", nil, desc = "AI/Claude Code" },
-    { "<C-t>", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+    { "<leader>a", "<cmd>ClaudeCode --chrome<cr>", desc = "Claude browser connect" },
+    { "<C-t>", "<cmd>ClaudeCode --chrome<cr>", desc = "Toggle Claude" },
     { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
     { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
     { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
