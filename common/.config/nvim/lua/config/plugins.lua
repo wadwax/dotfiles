@@ -397,35 +397,62 @@ require("lazy").setup({
 
       conform.setup({
         formatters_by_ft = {
-          javascript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescript = { "prettier" },
-          typescriptreact = { "prettier" },
-          css = { "prettier" },
-          html = { "prettier" },
-          json = { "prettier" },
-          jsonc = { "prettier" },
-          yaml = { "prettier" },
-          markdown = { "prettier" },
-          graphql = { "prettier" },
+          javascript = { "biome" },
+          javascriptreact = { "biome" },
+          typescript = { "biome" },
+          typescriptreact = { "biome" },
+          css = { "biome" },
+          html = { "biome" },
+          json = { "biome" },
+          jsonc = { "biome" },
+          yaml = { "yamlfmt" },
+          markdown = { "markdownlint-cli2" },
+          graphql = { "biome" },
           rust = { "rustfmt" },
           python = { "ruff_format" },
+          toml = { "taplo" },
+          terraform = { "terraform_fmt" },
+          hcl = { "terraform_fmt" },
+          sh = { "shfmt" },
+          bash = { "shfmt" },
+          zsh = { "shfmt" },
         },
         format_on_save = {
           timeout_ms = 2000,
           lsp_fallback = true,
         },
         formatters = {
-          prettier = {
-            command = util.from_node_modules("prettier"),
+          biome = {
             cwd = util.root_file({
-              ".prettierrc",
-              ".prettierrc.json",
-              ".prettierrc.yml",
-              ".prettierrc.yaml",
-              ".prettierrc.js",
-              "prettier.config.js",
-              "package.json",
+              "biome.json",
+              "biome.jsonc",
+            }),
+          },
+          yamlfmt = {
+            cwd = util.root_file({
+              ".yamlfmt.yaml",
+              ".yamlfmt.yml",
+              "yamlfmt.yaml",
+            }),
+          },
+          taplo = {
+            cwd = util.root_file({
+              ".taplo.toml",
+              "taplo.toml",
+            }),
+          },
+          ["markdownlint-cli2"] = {
+            cwd = util.root_file({
+              ".markdownlint.json",
+              ".markdownlint.yaml",
+              ".markdownlint-cli2.jsonc",
+            }),
+          },
+          ruff_format = {
+            cwd = util.root_file({
+              "ruff.toml",
+              ".ruff.toml",
+              "pyproject.toml",
             }),
           },
         },

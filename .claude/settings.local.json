@@ -24,7 +24,8 @@
       "Bash(bash:*)",
       "Bash(defaults delete:*)",
       "Bash(/tmp/macos_output.txt)",
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
