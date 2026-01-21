@@ -8,6 +8,12 @@ if [ -n "$ZSH_VERSION" ]; then
   eval "$(starship init zsh)"
 fi
 
+# Initialize zoxide (smarter cd)
+eval "$(zoxide init zsh)"
+
+# Alias cd to use zoxide
+alias cd="z"
+
 # User configuration
 
 alias ..="cd .."

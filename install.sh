@@ -31,15 +31,14 @@ if [[ "$OS" == "unknown" ]]; then
     exit 1
 fi
 
-# Function to create symlink with backup
-safe_symlink() {
-    local source=$1
-    local target=$2
+# Function to use stow for symlinking
+stow_package() {
+    local package=$1
+    local dotfiles_dir=$(pwd)
 
-    # Remove existing symlink or file to force relink
-    rm -rf "$target"
-    ln -sf "$source" "$target"
-    echo "  Linked: $target -> $source"
+    echo "  Stowing $package..."
+    stow -d "$dotfiles_dir" -t "$HOME" --restow "$package" 2>&1 | grep -v "BUG in find_stowed_path" || true
+    echo "  ✓ $package symlinked"
 }
 
 # Pull latest changes
@@ -53,72 +52,64 @@ mkdir -p ~/.ssh
 mkdir -p ~/.config
 echo ""
 
+# Check if stow is installed, try to install if not
+if ! command -v stow &> /dev/null; then
+    echo "stow is not installed. Attempting to install..."
+    if command -v brew &> /dev/null; then
+        brew install stow
+        echo "  ✓ stow installed via Homebrew"
+    elif command -v apt-get &> /dev/null; then
+        sudo apt-get update && sudo apt-get install -y stow
+        echo "  ✓ stow installed via apt-get"
+    elif command -v dnf &> /dev/null; then
+        sudo dnf install -y stow
+        echo "  ✓ stow installed via dnf"
+    elif command -v pacman &> /dev/null; then
+        sudo pacman -S --noconfirm stow
+        echo "  ✓ stow installed via pacman"
+    else
+        echo "Error: Could not install stow automatically."
+        echo "Please install stow manually and run this script again:"
+        echo "  macOS: brew install stow"
+        echo "  Linux: sudo apt-get install stow (or equivalent for your distro)"
+        exit 1
+    fi
+fi
+echo ""
+
 # Install common dotfiles
 echo "Installing common dotfiles..."
 DOTFILES_DIR="$(pwd)"
-COMMON_DIR="$DOTFILES_DIR/common"
 
-# Install starship prompt
-if ! command -v starship &> /dev/null; then
-    echo "Installing starship prompt..."
-    if [[ "$OS" == "macos" ]]; then
-        if command -v brew &> /dev/null; then
-            brew install starship
-        else
-            curl -sS https://starship.rs/install.sh | sh
-        fi
-    elif [[ "$OS" == "linux" ]]; then
-        curl -sS https://starship.rs/install.sh | sh -s -- --yes
-    fi
-    echo "  Starship installed"
-else
-    echo "  Starship already installed"
-fi
+stow_package "common"
 
-safe_symlink "$COMMON_DIR/.gitconfig" "$HOME/.gitconfig"
-safe_symlink "$COMMON_DIR/.hushlogin" "$HOME/.hushlogin"
-safe_symlink "$COMMON_DIR/.inputrc" "$HOME/.inputrc"
-safe_symlink "$COMMON_DIR/.screenrc" "$HOME/.screenrc"
-safe_symlink "$COMMON_DIR/.tmux.conf" "$HOME/.tmux.conf"
-# Reload tmux config
+# Reload tmux config if running
 if command -v tmux &> /dev/null; then
     if tmux info &> /dev/null; then
         # Tmux is running, reload config
         tmux source-file "$HOME/.tmux.conf"
         echo "  Reloaded tmux configuration"
-    else
-        # Start temp session to load config, then kill it
-        tmux new-session -d -s temp_config_load && tmux source-file "$HOME/.tmux.conf" && tmux kill-session -t temp_config_load
-        echo "  Loaded tmux configuration"
     fi
 fi
-safe_symlink "$COMMON_DIR/.zshrc" "$HOME/.zshrc"
-safe_symlink "$COMMON_DIR/.ssh/config" "$HOME/.ssh/config"
-safe_symlink "$COMMON_DIR/.config/nvim" "$HOME/.config/nvim"
-safe_symlink "$COMMON_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
 
 echo ""
 
 # Install OS-specific dotfiles
 if [[ "$OS" == "linux" ]]; then
     echo "Installing Linux-specific dotfiles..."
-    LINUX_DIR="$DOTFILES_DIR/linux"
 
-    safe_symlink "$LINUX_DIR/.zprofile" "$HOME/.zprofile"
+    stow_package "linux"
 
     echo "Installing common packages..."
-    bash "$COMMON_DIR/install-packages.sh"
+    bash "$DOTFILES_DIR/common/install-packages.sh"
     echo ""
     echo "Installing Linux-specific packages..."
-    bash "$LINUX_DIR/brew.sh"
+    bash "$DOTFILES_DIR/linux/brew.sh"
 
 elif [[ "$OS" == "macos" ]]; then
     echo "Installing macOS-specific dotfiles..."
-    MACOS_DIR="$DOTFILES_DIR/macos"
 
-    safe_symlink "$MACOS_DIR/.zprofile" "$HOME/.zprofile"
-    safe_symlink "$MACOS_DIR/.tmux.conf.osx" "$HOME/.tmux.conf.osx"
-    safe_symlink "$MACOS_DIR/.config/aerospace" "$HOME/.config/aerospace"
+    stow_package "macos"
 
     echo ""
     echo "Would you like to install packages? (y/n)"
@@ -126,15 +117,15 @@ elif [[ "$OS" == "macos" ]]; then
 
     if [[ "$install_packages" =~ ^[Yy]$ ]]; then
         echo "Installing common packages..."
-        bash "$COMMON_DIR/install-packages.sh"
+        bash "$DOTFILES_DIR/common/install-packages.sh"
         echo ""
         echo "Installing macOS-specific packages and GUI applications..."
-        bash "$MACOS_DIR/brew.sh"
+        bash "$DOTFILES_DIR/macos/brew.sh"
     else
         echo "Skipping package installation."
         echo "You can run it later with:"
-        echo "  bash $COMMON_DIR/install-packages.sh"
-        echo "  bash $MACOS_DIR/brew.sh"
+        echo "  bash $DOTFILES_DIR/common/install-packages.sh"
+        echo "  bash $DOTFILES_DIR/macos/brew.sh"
     fi
 
     echo ""
@@ -143,10 +134,10 @@ elif [[ "$OS" == "macos" ]]; then
 
     if [[ "$set_defaults" =~ ^[Yy]$ ]]; then
         echo "Setting macOS defaults..."
-        sudo bash "$MACOS_DIR/macos.sh"
+        sudo bash "$DOTFILES_DIR/macos/macos.sh"
     else
         echo "Skipping macOS defaults."
-        echo "You can run it later with: sudo bash $MACOS_DIR/macos.sh"
+        echo "You can run it later with: sudo bash $DOTFILES_DIR/macos/macos.sh"
     fi
 fi
 

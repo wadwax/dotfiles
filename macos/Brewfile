@@ -31,7 +31,6 @@ cask "postman"
 cask "visual-studio-code"
 cask "tableplus"
 cask "cloudflare-warp"
-brew "ngrok"
 brew "gnupg"
 brew "dopplerhq/cli/doppler"
 brew "tailscale"
@@ -42,7 +41,7 @@ cask "tailscale-app"
 cask "discord"
 cask "wechat"
 cask "zoom"
-mas "LINE", id: 539883307
+# mas "LINE", id: 539883307
 
 # Web browsers
 cask "firefox"
@@ -55,4 +54,4 @@ cask "the-unarchiver" # Unpacks archive files
 cask "vlc"
 cask "microsoft-auto-update"
 cask "microsoft-office"
-mas "Pixelmator Pro", id: 1289583905
+# mas "Pixelmator Pro", id: 1289583905

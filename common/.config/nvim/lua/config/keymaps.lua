@@ -35,7 +35,7 @@ map("n", "<leader>gh", ":diffget //3<CR>", { silent = true })
 map("n", "<leader>gu", ":diffget //2<CR>", { silent = true })
 map("n", "<leader>gs", ":G<CR>", { silent = true })
 map("n", "<leader>gc", ":Git commit<CR>", { silent = true })
-map("n", "<leader>gp", ":Git push<CR>", { silent = true })
+-- Note: Git push removed - use Lazygit (<leader>gg) for push operations
 
 -- Diffview mappings
 map("n", "<leader>dd", "<cmd>DiffviewOpen %<CR>", { silent = true, desc = "Diff current file" })
@@ -78,3 +78,31 @@ map("n", "<leader>cc", ":ClaudeCode<CR>", { silent = true, desc = "Toggle Claude
 
 -- Diffview
 map("n", "<leader>dc", ":DiffviewClose", { silent = true, desc = "Close Diffview" })
+
+-- Snacks.nvim keymaps (defined in plugins.lua but documented here for reference)
+-- Git:
+--   <leader>gg   - Lazygit
+--   <leader>gB   - Git Blame Line
+--   <leader>gf   - Lazygit Current File History
+--   <leader>gl   - Lazygit Log
+--   <leader>gp   - GitHub Pull Requests (open)
+--   <leader>gP   - GitHub Pull Requests (all states)
+--   <leader>gi   - GitHub Issues (open)
+--   <leader>gI   - GitHub Issues (all states)
+-- Buffer:
+--   <leader>bd  - Delete Buffer
+-- Notifications:
+--   <leader>un  - Dismiss Notifications
+--   <leader>N   - Notification History
+-- Terminal:
+--   <C-/>       - Toggle Terminal
+-- UI Toggles (all use <leader>u prefix):
+--   <leader>us  - Toggle Spelling
+--   <leader>uw  - Toggle Wrap
+--   <leader>uL  - Toggle Relative Number
+--   <leader>ud  - Toggle Diagnostics
+--   <leader>ul  - Toggle Line Number
+--   <leader>uc  - Toggle Conceal Level
+--   <leader>uT  - Toggle Treesitter
+--   <leader>ub  - Toggle Dark/Light Background
+--   <leader>uh  - Toggle Inlay Hints
