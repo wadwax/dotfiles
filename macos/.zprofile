@@ -1,6 +1,3 @@
-# Load OS-specific configuration
-[ -f ~/.zprofile.local ] && source ~/.zprofile.local
-
 # Homebrew on macOS (Apple Silicon)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
