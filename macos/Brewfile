@@ -22,6 +22,7 @@ cask "font-hack-nerd-font"
 
 # Terminal
 cask "iterm2"
+cask "kitty"  # Better image preview support for Neovim
 
 # Dev
 brew "ffmpeg"

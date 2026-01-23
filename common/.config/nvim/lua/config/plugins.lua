@@ -503,6 +503,60 @@ require("lazy").setup({
     end,
   },
 
+  -- Image preview
+  {
+    "3rd/image.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      -- Auto-detect terminal for best backend
+      local function detect_backend()
+        local term = vim.env.TERM or ""
+        if term:match("kitty") then
+          return "kitty"
+        elseif vim.env.TERM_PROGRAM == "WezTerm" then
+          return "kitty"  -- WezTerm supports kitty graphics protocol
+        elseif vim.env.TERM_PROGRAM == "iTerm.app" then
+          return "kitty"  -- iTerm2 also supports kitty protocol
+        else
+          -- Try ueberzug for other terminals
+          if vim.fn.executable("ueberzug") == 1 then
+            return "ueberzug"
+          end
+          return "kitty"  -- Fallback to kitty (will fail gracefully)
+        end
+      end
+
+      require("image").setup({
+        backend = detect_backend(),
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            filetypes = { "markdown", "vimwiki" },
+          },
+          neorg = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            filetypes = { "norg" },
+          },
+        },
+        max_width = 100,
+        max_height = 12,
+        max_width_window_percentage = nil,
+        max_height_window_percentage = 50,
+        window_overlap_clear_enabled = false,
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+        editor_only_render_when_focused = false,
+        tmux_show_only_in_active_window = false,
+        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg" },
+      })
+    end,
+  },
+
   -- Claude Code plugin
   {
     "coder/claudecode.nvim",

@@ -99,10 +99,43 @@ install_linux_utilities() {
     echo ""
 }
 
+# Install image and PDF preview dependencies
+install_preview_tools() {
+    echo "Installing image and PDF preview tools..."
+
+    if [ "$PKG_MANAGER" != "none" ]; then
+        # Install xdg-utils for xdg-open (PDF/image preview)
+        if [ "$PKG_MANAGER" = "apt-get" ]; then
+            $INSTALL_CMD xdg-utils evince feh 2>/dev/null || true
+            echo "  ✓ Installed xdg-utils, evince (PDF viewer), feh (image viewer)"
+        elif [ "$PKG_MANAGER" = "dnf" ] || [ "$PKG_MANAGER" = "yum" ]; then
+            $INSTALL_CMD xdg-utils evince feh 2>/dev/null || true
+            echo "  ✓ Installed xdg-utils, evince (PDF viewer), feh (image viewer)"
+        elif [ "$PKG_MANAGER" = "pacman" ]; then
+            $INSTALL_CMD xdg-utils zathura feh 2>/dev/null || true
+            echo "  ✓ Installed xdg-utils, zathura (PDF viewer), feh (image viewer)"
+        fi
+
+        # Optional: Install kitty terminal for best image preview support
+        echo ""
+        echo "  Note: For best image preview in Neovim, install Kitty terminal:"
+        if [ "$PKG_MANAGER" = "apt-get" ]; then
+            echo "    sudo apt install kitty"
+        elif [ "$PKG_MANAGER" = "dnf" ] || [ "$PKG_MANAGER" = "yum" ]; then
+            echo "    sudo dnf install kitty"
+        elif [ "$PKG_MANAGER" = "pacman" ]; then
+            echo "    sudo pacman -S kitty"
+        fi
+        echo "  Or install via Homebrew: brew install --cask kitty"
+    fi
+    echo ""
+}
+
 # Main installation flow
 main() {
     install_tmux
     install_linux_utilities
+    install_preview_tools
 
     echo "=================================="
     echo "Linux-specific installation complete!"

@@ -20,3 +20,6 @@ brew "zoxide"
 brew "gh"
 brew "jq"
 brew "stow"
+
+# Image/PDF preview support for Neovim
+brew "imagemagick"  # Image processing and conversion
