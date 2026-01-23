@@ -511,19 +511,29 @@ require("lazy").setup({
       -- Auto-detect terminal for best backend
       local function detect_backend()
         local term = vim.env.TERM or ""
-        if term:match("kitty") then
+        local term_program = vim.env.TERM_PROGRAM or ""
+
+        -- Check for kitty terminal
+        if term:match("kitty") or term:match("xterm%-kitty") then
           return "kitty"
-        elseif vim.env.TERM_PROGRAM == "WezTerm" then
-          return "kitty"  -- WezTerm supports kitty graphics protocol
-        elseif vim.env.TERM_PROGRAM == "iTerm.app" then
-          return "kitty"  -- iTerm2 also supports kitty protocol
-        else
-          -- Try ueberzug for other terminals
-          if vim.fn.executable("ueberzug") == 1 then
-            return "ueberzug"
-          end
-          return "kitty"  -- Fallback to kitty (will fail gracefully)
         end
+
+        -- Check for WezTerm
+        if term_program == "WezTerm" or vim.env.WEZTERM_EXECUTABLE then
+          return "kitty"  -- WezTerm supports kitty graphics protocol
+        end
+
+        -- Check for iTerm2 (including when inside tmux)
+        if term_program == "iTerm.app" or vim.env.LC_TERMINAL == "iTerm2" or vim.env.ITERM_SESSION_ID then
+          return "kitty"  -- iTerm2 supports kitty graphics protocol
+        end
+
+        -- Try ueberzug for other terminals
+        if vim.fn.executable("ueberzug") == 1 then
+          return "ueberzug"
+        end
+
+        return "kitty"  -- Fallback to kitty (will fail gracefully)
       end
 
       require("image").setup({
