@@ -64,29 +64,24 @@ require("lazy").setup({
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "lua", "vim", "javascript", "typescript", "tsx",
-          "rust", "python", "dockerfile", "yaml", "toml",
-          "json", "css", "html", "markdown", "bash"
+    opts = {
+      ensure_installed = {
+        "lua", "vim", "javascript", "typescript", "tsx",
+        "rust", "python", "dockerfile", "yaml", "toml",
+        "json", "css", "html", "markdown", "bash"
+      },
+      highlight = { enable = true },
+      indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "gnn",
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
         },
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false
-        },
-        indent = { enable = true },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
-          },
-        },
-      })
-    end
+      },
+    }
   }, -- LSP
   {
     "neovim/nvim-lspconfig",
