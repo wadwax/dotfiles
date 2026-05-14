@@ -253,3 +253,11 @@ eval "$(~/.local/bin/mise activate zsh)"
 # Minuet AI Completion - Set your Anthropic API key
 # export ANTHROPIC_API_KEY='sk-ant-XXXXXXXXXXXXXXXXXXXXXXX'
 export PATH="$HOME/.local/bin:$PATH"
+
+# Auto-load bonsai/.env so MCP servers and CLI tools see secrets
+# (e.g. TOFU_MCP_API_TOKEN for the tofu-mcp Claude Code connector).
+if [[ -f "$HOME/bonsai/.env" ]]; then
+  set -a
+  source "$HOME/bonsai/.env"
+  set +a
+fi
