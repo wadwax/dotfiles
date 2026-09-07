@@ -1,0 +1,19 @@
+# Ghostty configuration
+# Docs: https://ghostty.org/docs/config/reference
+# Symlinked to ~/.config/ghostty/config by stow (macos package)
+
+theme = TokyoNight
+
+font-family = Hack Nerd Font Mono
+font-size = 14
+
+cursor-style = block
+cursor-style-blink = false
+
+scrollback-limit = 10000000
+
+# Don't prompt when quitting with running sessions
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+macos-option-as-alt = true

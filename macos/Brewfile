@@ -21,7 +21,7 @@ cask "font-fira-code"
 cask "font-hack-nerd-font"
 
 # Terminal
-cask "iterm2"
+cask "ghostty"
 cask "kitty"  # Better image preview support for Neovim
 
 # Dev

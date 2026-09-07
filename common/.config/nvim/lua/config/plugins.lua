@@ -523,9 +523,9 @@ require("lazy").setup({
           return "kitty"  -- WezTerm supports kitty graphics protocol
         end
 
-        -- Check for iTerm2 (including when inside tmux)
-        if term_program == "iTerm.app" or vim.env.LC_TERMINAL == "iTerm2" or vim.env.ITERM_SESSION_ID then
-          return "kitty"  -- iTerm2 supports kitty graphics protocol
+        -- Check for Ghostty (including when inside tmux)
+        if term:match("ghostty") or term_program == "ghostty" or vim.env.GHOSTTY_RESOURCES_DIR then
+          return "kitty"  -- Ghostty supports kitty graphics protocol
         end
 
         -- Try ueberzug for other terminals

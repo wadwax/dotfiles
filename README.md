@@ -29,11 +29,12 @@ dotfiles/
 │   ├── .zshrc       # Linux-optimized zsh config
 │   └── install-packages.sh
 ├── macos/            # macOS-specific configurations
+│   ├── .config/
+│   │   └── ghostty/
 │   ├── .tmux.conf.osx
 │   ├── Brewfile
 │   ├── brew.sh
-│   ├── macos.sh
-│   └── iterm/
+│   └── macos.sh
 ├── install.sh        # Main installation script with OS detection
 └── README.md
 ```
@@ -126,7 +127,7 @@ bash ~/dotfiles/linux/install-packages.sh
 The macOS package installer uses Homebrew to install:
 
 - Development tools and CLI utilities
-- GUI applications (Arc, Cursor, iTerm2, etc.)
+- GUI applications (Arc, Cursor, Ghostty, etc.)
 - Fonts (Fira Code, Hack Nerd Font)
 - Terminal utilities (neovim, tmux, zsh enhancements)
 
@@ -159,7 +160,7 @@ These configurations are shared across all operating systems:
 - **Zsh**: Full-featured with macOS aliases and utilities
 - **Homebrew**: Comprehensive package list via Brewfile
 - **System defaults**: macOS system preferences automation
-- **iTerm2**: Terminal emulator profiles
+- **Ghostty**: Terminal emulator configuration (`macos/.config/ghostty/config`)
 
 ## Customization
 
@@ -287,33 +288,14 @@ Don't blindly use these settings unless you understand what they do!
 
 Originally forked and customized from various dotfiles repositories. Special thanks to the open-source community for inspiration and tools.
 
-## iTerm2 Setup (macOS)
+## Ghostty Setup (macOS)
 
-After running the install script, iTerm2 users should import the provided configurations:
+Ghostty is installed via the Brewfile (`brew install --cask ghostty`), and its
+configuration lives at `macos/.config/ghostty/config`, which stow symlinks to
+`~/.config/ghostty/config`. No manual import steps are needed — the config uses
+Ghostty's built-in "TokyoNight" theme and Hack Nerd Font Mono.
 
-### Import Color Scheme
-
-1. Open iTerm2 → Preferences (⌘,)
-2. Go to Profiles → Colors
-3. Click "Color Presets..." dropdown → "Import..."
-4. Navigate to `~/dotfiles/iterm/tokyo-night.itermcolors`
-5. Select the imported "Tokyo Night" from the Color Presets dropdown
-
-### Import Profile
-
-1. Open iTerm2 → Preferences (⌘,)
-2. Go to Profiles
-3. Click the "Other Actions..." dropdown (bottom left) → "Import JSON Profiles..."
-4. Navigate to `~/dotfiles/iterm/profile.json`
-5. Select and import the profile
-
-### Import Key Mappings
-
-1. Open iTerm2 → Preferences (⌘,)
-2. Go to Profiles → Keys → Key Mappings
-3. Click "Presets..." dropdown → "Import..."
-4. Navigate to `~/dotfiles/iterm/iterm.itermkeymap`
-5. Load the key mappings
+To reload the config in a running Ghostty instance, press ⌘⇧, (Cmd+Shift+Comma).
 
 ## License
 
