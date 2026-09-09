@@ -506,6 +506,9 @@ require("lazy").setup({
   -- Image preview
   {
     "3rd/image.nvim",
+    -- skip the rockspec: hererocks can't build Lua 5.1 here (no readline/ncurses
+    -- headers), so use the magick CLI processor instead of the magick rock
+    build = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       -- Auto-detect terminal for best backend
@@ -538,6 +541,7 @@ require("lazy").setup({
 
       require("image").setup({
         backend = detect_backend(),
+        processor = "magick_cli",
         integrations = {
           markdown = {
             enabled = true,
