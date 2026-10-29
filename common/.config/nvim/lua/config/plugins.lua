@@ -577,6 +577,8 @@ require("lazy").setup({
     dependencies = { "folke/snacks.nvim" },
     config = function()
       require("claudecode").setup({
+        -- Strip bonsai/.env workload-identity vars so Claude uses the claude.ai login
+        terminal_cmd = "env -u ANTHROPIC_FEDERATION_RULE_ID -u ANTHROPIC_SERVICE_ACCOUNT_ID -u ANTHROPIC_ORGANIZATION_ID -u ANTHROPIC_WORKSPACE_ID claude",
         track_selection = true,
         visual_demotion_delay_ms = 50,
         focus_after_send = true,
