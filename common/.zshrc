@@ -261,3 +261,10 @@ if [[ -f "$HOME/bonsai/.env" ]]; then
   source "$HOME/bonsai/.env"
   set +a
 fi
+
+# bonsai/.env carries the apps' Anthropic workload-identity vars; Claude Code
+# would treat them as its own login and ignore the claude.ai subscription.
+claude() {
+  env -u ANTHROPIC_FEDERATION_RULE_ID -u ANTHROPIC_SERVICE_ACCOUNT_ID \
+    -u ANTHROPIC_ORGANIZATION_ID -u ANTHROPIC_WORKSPACE_ID claude "$@"
+}
