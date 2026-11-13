@@ -56,8 +56,38 @@ install_linux_build_deps() {
     echo ""
 }
 
+# Make Homebrew's own git/curl trust a TLS-intercepting corporate proxy CA
+# (e.g. Aikido safe-chain in Coder workspaces). Homebrew ignores the system
+# CA store and SSL_CERT_FILE/GIT_SSL_CAINFO, and only trusts its bundled
+# etc/ca-certificates/cert.pem, so the CA has to be appended there.
+# Idempotent; re-run after `brew upgrade ca-certificates` regenerates the bundle.
+trust_proxy_ca_in_homebrew() {
+    local ca="/usr/local/share/ca-certificates/aikido-endpoint-protection.crt"
+    [ -f "$ca" ] || return 0
+    local prefix
+    for prefix in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew /opt/homebrew /usr/local; do
+        local pem="$prefix/etc/ca-certificates/cert.pem"
+        [ -f "$pem" ] || continue
+        if ! grep -qF "$(sed -n 2p "$ca")" "$pem"; then
+            echo "Adding proxy CA ($ca) to Homebrew CA bundle ($pem)..."
+            { printf '\n# Corporate proxy CA (added by dotfiles)\n'; cat "$ca"; } >> "$pem"
+        fi
+    done
+}
+
 # Install Homebrew if not already installed
 install_homebrew() {
+    # Put an existing Linux Homebrew on PATH before checking, so a non-login
+    # shell (Coder startup) does not re-run the installer every start.
+    if [[ "$OS" == "linux" ]]; then
+        if [ -x "$HOME/.linuxbrew/bin/brew" ]; then
+            eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+        elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        fi
+    fi
+    trust_proxy_ca_in_homebrew
+
     if command -v brew >/dev/null 2>&1; then
         echo "✓ Homebrew is already installed"
     else
@@ -86,6 +116,7 @@ install_homebrew() {
                 eval "$(/usr/local/bin/brew shellenv)"
             fi
         fi
+        trust_proxy_ca_in_homebrew
         echo "✓ Homebrew installed successfully"
     fi
     echo ""
