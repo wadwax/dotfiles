@@ -3,7 +3,7 @@ brew "mas" # install mas for app store applications
 # Essentials
 cask "1password"
 cask "nikitabobko/tap/aerospace"
-cask "arc"
+cask "thebrowsercompany-dia"
 cask "spotify"
 cask "raycast"
 cask "slack"

@@ -127,7 +127,7 @@ bash ~/dotfiles/linux/install-packages.sh
 The macOS package installer uses Homebrew to install:
 
 - Development tools and CLI utilities
-- GUI applications (Arc, Cursor, Ghostty, etc.)
+- GUI applications (Dia, Cursor, Ghostty, etc.)
 - Fonts (Fira Code, Hack Nerd Font)
 - Terminal utilities (neovim, tmux, zsh enhancements)
 
