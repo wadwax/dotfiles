@@ -268,3 +268,8 @@ claude() {
   env -u ANTHROPIC_FEDERATION_RULE_ID -u ANTHROPIC_SERVICE_ACCOUNT_ID \
     -u ANTHROPIC_ORGANIZATION_ID -u ANTHROPIC_WORKSPACE_ID claude "$@"
 }
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/koki/.lmstudio/bin"
+# End of LM Studio CLI section
+
